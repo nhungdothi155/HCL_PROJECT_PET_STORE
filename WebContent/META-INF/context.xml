@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="ServletJNDIExample"
+	path = "ServletJNDIExample"
+	reloaded="true">
+	<Resource name="jdbc/hcl_project_pet_store" 
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		username="root"
+		password="11111"
+		url="jdbc:mysql://localhost/hcl_project_pet_store"></Resource>	
+</Context>
+	 
