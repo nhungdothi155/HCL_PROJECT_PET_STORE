@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS hcl_project_pet_store;
+USE hcl_project_pet_store;
 CREATE TABLE `cart`  (
   `cart_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
