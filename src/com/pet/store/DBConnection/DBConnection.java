@@ -1,4 +1,4 @@
-package com.pet.store.controller.dbConnection;
+package com.pet.store.DBConnection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
