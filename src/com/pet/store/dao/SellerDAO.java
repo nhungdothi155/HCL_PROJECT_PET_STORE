@@ -1,7 +1,8 @@
 package com.pet.store.dao;
 
 
-public interface OrderDAO {
 
+public interface SellerDAO {
 
+	
 }
