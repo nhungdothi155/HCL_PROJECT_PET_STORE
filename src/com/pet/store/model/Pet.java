@@ -1,6 +1,6 @@
 package com.pet.store.model;
 
-public interface Pet {
+public class Pet {
 	
 
 }

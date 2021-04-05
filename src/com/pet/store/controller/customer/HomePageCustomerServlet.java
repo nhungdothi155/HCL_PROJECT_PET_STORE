@@ -1,6 +1,8 @@
 package com.pet.store.controller.customer;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HomePageCustomerServlet
  */
-@WebServlet("/homepage/customer")
+@WebServlet("/customer")
 public class HomePageCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +28,10 @@ public class HomePageCustomerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//create new request 
+		RequestDispatcher rq= request.getRequestDispatcher("homepage.jsp");
+		//forward to this page
+		rq.forward(request, response);
 	}
 
 	/**

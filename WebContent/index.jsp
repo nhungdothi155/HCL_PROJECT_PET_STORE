@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>index</title>
 </head>
 <body>
-Homepage_Customer
-
+<%
+String path= getServletContext().getContextPath();
+response.sendRedirect(path +"/homepage/customer");
+%>
 </body>
 </html>
