@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="HCL_PROJECT_PET_STORE">
+                
+    
+    
+    <wb-module deploy-name="HCL_PROJECT_PET_STORE-0.0.1-SNAPSHOT">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                                
+        
+        
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src.main.java"/>
+                        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+                                
+        
+        
         <property name="context-root" value="HCL_PROJECT_PET_STORE"/>
+                                
+        
+        
         <property name="java-output-path" value="/HCL_PROJECT_PET_STORE/build/classes"/>
+                            
+    
+    
     </wb-module>
+            
+
+
 </project-modules>
