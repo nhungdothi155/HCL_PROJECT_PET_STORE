@@ -15,13 +15,17 @@ public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
 	}
 
 	@Override
-	public void insert(Pet t) {
+	public int insert(Pet t) {
+		return -1;
+		
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Pet t) {
+	public int update(Pet t) {
+		return -1;
+		
 		// TODO Auto-generated method stub
 		
 	}

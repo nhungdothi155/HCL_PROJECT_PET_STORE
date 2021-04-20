@@ -1,146 +1,172 @@
 package com.pet.store.entity;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="order")
 public class Order {
-	private long order_id;
-	private long customer_id;
-	private double total_price;
-	private String customer_firstname;
-	private String customer_lastname;
-	private String customer_country;
-	private String customer_city;
-	private String customer_address;
-	private String customer_phone;
-	private String customer_email;
-	private String zip_code;
+	//id
+	@Id
+	@Column(name="order_id")
+	private long orderId;
+	// customer id
+	@ManyToOne
+	@JoinColumn(name="customer_id",nullable=false)
+	private Customer customer;
+	// total price of order
+	@Column(name="total_price")
+	private double totalPrice;
+	// firstname
+	@Column(name="customer_firstname")
+	private String customerFirstname;
+	//lastname
+	@Column(name="customer_lastname")
+	private String customerLastname;
+	//country
+	@Column(name="customer_country")
+	private String customerCountry;
+	//city
+	@Column(name="customer_city")
+	private String customerCity;
+	//address
+	@Column(name="customer_address")
+	private String customerAddress;
+	//phone
+	@Column(name="customer_phone")
+	private String customerPhone;
+	//email
+	@Column(name="customer_email")
+	private String customerEmail;
+	//zipcode
+	@Column(name="zip_code")
+	private String zipCode;
+	// note of order
+	@Column(name="note")
 	private String note;
-	private Date date_created;
-	private Date date_modified;
-	public Order(long order_id, long customer_id, double total_price, String customer_firstname,
-			String customer_lastname, String customer_country, String customer_city, String customer_address,
-			String customer_phone, String customer_email, String zip_code, String note, Date date_created,
-			Date date_modified) {
+	
+	@OneToMany(mappedBy="order")
+	private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
+	
+	
+	public List<OrderProduct> getOrderProducts() {
+		return orderProducts;
+	}
+	public void setOrderProducts(List<OrderProduct> orderProducts) {
+		this.orderProducts = orderProducts;
+	}
+	public Order(long orderId, Customer customer, double totalPrice, String customerFirstname, String customerLastname,
+			String customerCountry, String customerCity, String customerAddress, String customerPhone,
+			String customerEmail, String zipCode, String note) {
 		super();
-		this.order_id = order_id;
-		this.customer_id = customer_id;
-		this.total_price = total_price;
-		this.customer_firstname = customer_firstname;
-		this.customer_lastname = customer_lastname;
-		this.customer_country = customer_country;
-		this.customer_city = customer_city;
-		this.customer_address = customer_address;
-		this.customer_phone = customer_phone;
-		this.customer_email = customer_email;
-		this.zip_code = zip_code;
+		this.orderId = orderId;
+		this.customer = customer;
+		this.totalPrice = totalPrice;
+		this.customerFirstname = customerFirstname;
+		this.customerLastname = customerLastname;
+		this.customerCountry = customerCountry;
+		this.customerCity = customerCity;
+		this.customerAddress = customerAddress;
+		this.customerPhone = customerPhone;
+		this.customerEmail = customerEmail;
+		this.zipCode = zipCode;
 		this.note = note;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
 	}
-	public Order(long customer_id, double total_price, String customer_firstname, String customer_lastname,
-			String customer_country, String customer_city, String customer_address, String customer_phone,
-			String customer_email, String zip_code, String note, Date date_created, Date date_modified) {
+	public Order(Customer customer, double totalPrice, String customerFirstname, String customerLastname,
+			String customerCountry, String customerCity, String customerAddress, String customerPhone,
+			String customerEmail, String zipCode, String note) {
 		super();
-		this.customer_id = customer_id;
-		this.total_price = total_price;
-		this.customer_firstname = customer_firstname;
-		this.customer_lastname = customer_lastname;
-		this.customer_country = customer_country;
-		this.customer_city = customer_city;
-		this.customer_address = customer_address;
-		this.customer_phone = customer_phone;
-		this.customer_email = customer_email;
-		this.zip_code = zip_code;
+		this.customer = customer;
+		this.totalPrice = totalPrice;
+		this.customerFirstname = customerFirstname;
+		this.customerLastname = customerLastname;
+		this.customerCountry = customerCountry;
+		this.customerCity = customerCity;
+		this.customerAddress = customerAddress;
+		this.customerPhone = customerPhone;
+		this.customerEmail = customerEmail;
+		this.zipCode = zipCode;
 		this.note = note;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
 	}
-	public Order() {
-		super();
+	public long getOrderId() {
+		return orderId;
 	}
-	public long getOrder_id() {
-		return order_id;
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
-	public long getCustomer_id() {
-		return customer_id;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public double getTotal_price() {
-		return total_price;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
-	public String getCustomer_firstname() {
-		return customer_firstname;
+	public double getTotalPrice() {
+		return totalPrice;
 	}
-	public String getCustomer_lastname() {
-		return customer_lastname;
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
-	public String getCustomer_country() {
-		return customer_country;
+	public String getCustomerFirstname() {
+		return customerFirstname;
 	}
-	public String getCustomer_city() {
-		return customer_city;
+	public void setCustomerFirstname(String customerFirstname) {
+		this.customerFirstname = customerFirstname;
 	}
-	public String getCustomer_address() {
-		return customer_address;
+	public String getCustomerLastname() {
+		return customerLastname;
 	}
-	public String getCustomer_phone() {
-		return customer_phone;
+	public void setCustomerLastname(String customerLastname) {
+		this.customerLastname = customerLastname;
 	}
-	public String getCustomer_email() {
-		return customer_email;
+	public String getCustomerCountry() {
+		return customerCountry;
 	}
-	public String getZip_code() {
-		return zip_code;
+	public void setCustomerCountry(String customerCountry) {
+		this.customerCountry = customerCountry;
+	}
+	public String getCustomerCity() {
+		return customerCity;
+	}
+	public void setCustomerCity(String customerCity) {
+		this.customerCity = customerCity;
+	}
+	public String getCustomerAddress() {
+		return customerAddress;
+	}
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+	public String getCustomerPhone() {
+		return customerPhone;
+	}
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
+	}
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 	public String getNote() {
 		return note;
 	}
-	public Date getDate_created() {
-		return date_created;
-	}
-	public Date getDate_modified() {
-		return date_modified;
-	}
-	public void setOrder_id(long order_id) {
-		this.order_id = order_id;
-	}
-	public void setCustomer_id(long customer_id) {
-		this.customer_id = customer_id;
-	}
-	public void setTotal_price(double total_price) {
-		this.total_price = total_price;
-	}
-	public void setCustomer_firstname(String customer_firstname) {
-		this.customer_firstname = customer_firstname;
-	}
-	public void setCustomer_lastname(String customer_lastname) {
-		this.customer_lastname = customer_lastname;
-	}
-	public void setCustomer_country(String customer_country) {
-		this.customer_country = customer_country;
-	}
-	public void setCustomer_city(String customer_city) {
-		this.customer_city = customer_city;
-	}
-	public void setCustomer_address(String customer_address) {
-		this.customer_address = customer_address;
-	}
-	public void setCustomer_phone(String customer_phone) {
-		this.customer_phone = customer_phone;
-	}
-	public void setCustomer_email(String customer_email) {
-		this.customer_email = customer_email;
-	}
-	public void setZip_code(String zip_code) {
-		this.zip_code = zip_code;
-	}
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
-	}
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
-	}
+
 	
 }

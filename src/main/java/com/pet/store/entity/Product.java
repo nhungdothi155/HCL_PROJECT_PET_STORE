@@ -1,13 +1,19 @@
 package com.pet.store.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="product")
@@ -15,13 +21,9 @@ public class Product {
 	
 //id	
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name="product_id")
 private long productId;
-//seller
-@ManyToOne
-@JoinColumn(name="seller_id",nullable=false)
-private Seller seller;
 //category
 @ManyToOne
 @JoinColumn(name="category_id",nullable=false)
@@ -43,31 +45,76 @@ private String material;
 private String origin;
 // the numbers of product are available
 @Column(name="product_numbers")
-private String productNumbers;
+private int productNumbers;
 //the photos of product
 @Column(name="photos")
 private String photos;
 // the state of product : new or used
+@Enumerated(EnumType.STRING)
 @Column(name="product_state")
 private State productState;
+
+@OneToMany(mappedBy="product")
+private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
+
+@OneToMany(mappedBy="product")
+private List<CartItem> cartItems = new ArrayList<CartItem>();
+
+
+public Product(long productId, Category category, String productName, String description, String brand, String material,
+		String origin, int productNumbers, String photos, State productState) {
+	super();
+	this.productId = productId;
+	this.category = category;
+	this.productName = productName;
+	this.description = description;
+	this.brand = brand;
+	this.material = material;
+	this.origin = origin;
+	this.productNumbers = productNumbers;
+	this.photos = photos;
+	this.productState = productState;
+}
+
+public Product( Category category, String productName, String description, String brand, String material,
+		String origin, int productNumbers, String photos, State productState) {
+	super();
+	
+	this.category = category;
+	this.productName = productName;
+	this.description = description;
+	this.brand = brand;
+	this.material = material;
+	this.origin = origin;
+	this.productNumbers = productNumbers;
+	this.photos = photos;
+	this.productState = productState;
+}
+
+
+public List<OrderProduct> getOrderProducts() {
+	return orderProducts;
+}
+
+public void setOrderProducts(List<OrderProduct> orderProducts) {
+	this.orderProducts = orderProducts;
+}
+
+public Category getCategory() {
+	return category;
+}
+
+public void setCategory(Category category) {
+	this.category = category;
+}
+
 public long getProductId() {
 	return productId;
 }
 public void setProductId(long productId) {
 	this.productId = productId;
 }
-public Seller getSeller() {
-	return seller;
-}
-public void setSeller(Seller seller) {
-	this.seller = seller;
-}
-public Category getCategory() {
-	return category;
-}
-public void setCategory(Category category) {
-	this.category = category;
-}
+
 public String getProductName() {
 	return productName;
 }
@@ -98,10 +145,10 @@ public String getOrigin() {
 public void setOrigin(String origin) {
 	this.origin = origin;
 }
-public String getProductNumbers() {
+public int getProductNumbers() {
 	return productNumbers;
 }
-public void setProductNumbers(String productNumbers) {
+public void setProductNumbers(int productNumbers) {
 	this.productNumbers = productNumbers;
 }
 public String getPhotos() {
@@ -124,9 +171,4 @@ public void setProductState(State productState) {
 
 
 }
-// the state of a product : product has been used or it is new
-enum State{
-	NEW,USED
-	
-}
- 
+

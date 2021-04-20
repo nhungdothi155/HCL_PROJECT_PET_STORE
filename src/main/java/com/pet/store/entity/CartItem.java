@@ -1,70 +1,65 @@
 package com.pet.store.entity;
 
-import java.util.Date;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="cart_item")
 public class CartItem {
-	private long cart_item_id;
-	private long cart_id;
-	private long product_id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="cart_item_id")
+	private long cartItemId;
+	@ManyToOne
+	@JoinColumn(name="cart_id",nullable=false)
+	private Cart cart;
+	@ManyToOne
+	@JoinColumn(name="product_id",nullable=false)
+	private Product product;
+	@Column(name="quantity")
 	private int quantity;
-	private Date date_created;
-	private Date date_modified;
-	public CartItem() {
+	public CartItem(Cart cart, Product product, int quantity) {
 		super();
-	}
-	public CartItem(long cart_item_id, long cart_id, long product_id, int quantity, Date date_created,
-			Date date_modified) {
-		super();
-		this.cart_item_id = cart_item_id;
-		this.cart_id = cart_id;
-		this.product_id = product_id;
+		this.cart = cart;
+		this.product = product;
 		this.quantity = quantity;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
 	}
-	public CartItem(long cart_id, long product_id, int quantity, Date date_created, Date date_modified) {
+	public CartItem(long cartItemId, Cart cart, Product product, int quantity) {
 		super();
-		this.cart_id = cart_id;
-		this.product_id = product_id;
+		this.cartItemId = cartItemId;
+		this.cart = cart;
+		this.product = product;
 		this.quantity = quantity;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
 	}
-	public long getCart_item_id() {
-		return cart_item_id;
+	public long getCartItemId() {
+		return cartItemId;
 	}
-	public long getCart_id() {
-		return cart_id;
+	public void setCartItemId(long cartItemId) {
+		this.cartItemId = cartItemId;
 	}
-	public long getProduct_id() {
-		return product_id;
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	public int getQuantity() {
 		return quantity;
 	}
-	public Date getDate_created() {
-		return date_created;
-	}
-	public Date getDate_modified() {
-		return date_modified;
-	}
-	public void setCart_item_id(long cart_item_id) {
-		this.cart_item_id = cart_item_id;
-	}
-	public void setCart_id(long cart_id) {
-		this.cart_id = cart_id;
-	}
-	public void setProduct_id(long product_id) {
-		this.product_id = product_id;
-	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
-	}
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
-	}
+	
 	
 }

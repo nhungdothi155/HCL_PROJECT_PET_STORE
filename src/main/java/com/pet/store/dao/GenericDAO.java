@@ -10,8 +10,8 @@ import com.pet.store.DBConnection.DBConnection;
 
 public abstract class GenericDAO<T> {
 	public abstract List<T> listAll();
-	public abstract void insert(T t);
-	public abstract void update(T t);
+	public abstract int insert(T t);
+	public abstract int update(T t);
 	public abstract void delete(int id);
 	public abstract T getElementById(long id);
 //	public Connection connection() {

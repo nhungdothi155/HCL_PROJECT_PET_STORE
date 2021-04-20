@@ -1,61 +1,86 @@
 package com.pet.store.entity;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="category")
 public class Category {
-	private long category_id;
-	private String category_name;
-	private String sub_categories;
-	private Date date_created;
-	private Date date_modified;
+	// id
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="category_id")
+	private long categoryId;
+	//name
+	@Column(name="category_name")
+	private String categoryName;
+	// sub categories
+	@Column(name="sub_categories")
+	private String subCategories;
+	
+	// list of product in a cateogries
+	@OneToMany(mappedBy="category")
+	private List<Product> products = new ArrayList<Product>();
+
+	public Category(long categoryId, String categoryName, String subCategories, List<Product> products) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.subCategories = subCategories;
+		this.products = products;
+	}
+
 	public Category() {
 		super();
 	}
-	public Category(long category_id, String category_name, String sub_categories, Date date_created,
-			Date date_modified) {
+
+	public Category(long categoryId, String categoryName, String subCategories) {
 		super();
-		this.category_id = category_id;
-		this.category_name = category_name;
-		this.sub_categories = sub_categories;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.subCategories = subCategories;
 	}
-	public Category(String category_name, String sub_categories, Date date_created, Date date_modified) {
-		super();
-		this.category_name = category_name;
-		this.sub_categories = sub_categories;
-		this.date_created = date_created;
-		this.date_modified = date_modified;
+
+	public long getCategoryId() {
+		return categoryId;
 	}
-	public long getCategory_id() {
-		return category_id;
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getCategory_name() {
-		return category_name;
+
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public String getSub_categories() {
-		return sub_categories;
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
-	public Date getDate_created() {
-		return date_created;
+
+	public String getSubCategories() {
+		return subCategories;
 	}
-	public Date getDate_modified() {
-		return date_modified;
+
+	public void setSubCategories(String subCategories) {
+		this.subCategories = subCategories;
 	}
-	public void setCategory_id(long category_id) {
-		this.category_id = category_id;
+
+	public List<Product> getProducts() {
+		return products;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
-	public void setSub_categories(String sub_categories) {
-		this.sub_categories = sub_categories;
-	}
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
-	}
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
-	}
+	
+	
+	
 	
 }

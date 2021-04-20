@@ -1,11 +1,12 @@
 package com.pet.store.entity;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,7 +17,7 @@ import javax.persistence.TemporalType;
 public class Seller {
 	//id
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="seller_id")
 	private long sellerId;
 	// username
@@ -28,12 +29,14 @@ public class Seller {
 	//time create
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_created")
-	private Timestamp dateCreated;
+	private Date dateCreated;
 	//time modify
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_modified")
-	private Timestamp dateModified;
-	public Seller(long sellerId, String username, String password, Timestamp dateCreated, Timestamp dateModified) {
+	private Date dateModified;
+	
+	
+	public Seller(long sellerId, String username, String password, Date dateCreated, Date dateModified) {
 		super();
 		this.sellerId = sellerId;
 		this.username = username;
@@ -73,16 +76,16 @@ public class Seller {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Timestamp getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
-	public void setDateCreated(Timestamp dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-	public Timestamp getDateModified() {
+	public Date getDateModified() {
 		return dateModified;
 	}
-	public void setDateModified(Timestamp dateModified) {
+	public void setDateModified(Date dateModified) {
 		this.dateModified = dateModified;
 	}
 	

@@ -43,8 +43,8 @@ class SellerDAOImplTest {
 	void testDelete() {
 		System.out.println("test delete");
 		int id = 1;
-		Seller seller = (Seller) sellerDao.getElementById(id);
 		sellerDao.delete(id);
+		Seller seller = (Seller) sellerDao.getElementById(id);
 		Assertions.assertNull(seller);
 	}
 
@@ -72,9 +72,9 @@ class SellerDAOImplTest {
 	void testInsertSeller() {
 		System.out.println("test insert");
 	 Seller seller = new Seller("admin1","admin1");
-	 sellerDao.insert(seller);
-	 boolean flagTrue = sellerDao.isLogin("admin1", "admin1");
-	 Assertions.assertTrue(flagTrue);
+	int n= sellerDao.insert(seller);
+	Assertions.assertTrue(n>0);
+	
 	}
 
 	@Test

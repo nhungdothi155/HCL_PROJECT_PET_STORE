@@ -1,29 +1,31 @@
 package com.pet.store.dao.implement;
+
 import java.util.List;
 
+
+import com.pet.store.dao.CartItemDAO;
 import com.pet.store.dao.GenericDAO;
-import com.pet.store.dao.ProductDAO;
-import com.pet.store.entity.Product;
-public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
+
+import com.pet.store.entity.CartItem;
+
+public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO{
 
 	@Override
-	public List<Product> listAll() {
+	public List<CartItem> listAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insert(Product t) {
-		return -1;
+	public int insert(CartItem t) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
-	public  int update(Product t) {
-		return -1;
+	public int update(CartItem t) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 	}
 
 	@Override
-	public Product getElementById(long id) {
+	public CartItem getElementById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
