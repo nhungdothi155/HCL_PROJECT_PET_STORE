@@ -6,7 +6,9 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+
 
 public class DBConnection {
 	public static DataSource getMySQLDataSource() {

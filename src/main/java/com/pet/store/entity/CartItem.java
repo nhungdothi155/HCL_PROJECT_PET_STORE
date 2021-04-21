@@ -23,6 +23,11 @@ public class CartItem {
 	private Product product;
 	@Column(name="quantity")
 	private int quantity;
+	
+	
+	public CartItem() {
+		super();
+	}
 	public CartItem(Cart cart, Product product, int quantity) {
 		super();
 		this.cart = cart;

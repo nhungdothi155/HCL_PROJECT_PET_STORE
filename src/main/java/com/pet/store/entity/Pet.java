@@ -60,6 +60,11 @@ public class Pet {
 	private String description;
 	
 
+	public Pet() {
+		super();
+	}
+
+
 	public Pet(long petId, String petName, float petAge, double petWeight, String petType, String petOrigin,
 			Status status, String photos, String description) {
 		super();

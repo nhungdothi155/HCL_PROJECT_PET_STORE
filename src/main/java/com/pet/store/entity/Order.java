@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="order")
 public class Order {
+
 	//id
 	@Id
 	@Column(name="order_id")
@@ -61,6 +62,9 @@ public class Order {
 	}
 	public void setOrderProducts(List<OrderProduct> orderProducts) {
 		this.orderProducts = orderProducts;
+	}
+	public Order() {
+		super();
 	}
 	public Order(long orderId, Customer customer, double totalPrice, String customerFirstname, String customerLastname,
 			String customerCountry, String customerCity, String customerAddress, String customerPhone,

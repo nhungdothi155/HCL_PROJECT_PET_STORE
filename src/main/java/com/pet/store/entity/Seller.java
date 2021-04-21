@@ -27,23 +27,26 @@ public class Seller {
 	@Column(name="password")
 	private String password;
 	//time create
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_created")
-	private Date dateCreated;
-	//time modify
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_modified")
-	private Date dateModified;
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@Column(name="date_created")
+//	private Date dateCreated;
+//	//time modify
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@Column(name="date_modified")
+//	private Date dateModified;
 	
 	
-	public Seller(long sellerId, String username, String password, Date dateCreated, Date dateModified) {
+	public Seller() {
 		super();
-		this.sellerId = sellerId;
-		this.username = username;
-		this.password = password;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
 	}
+//	public Seller(long sellerId, String username, String password, Date dateCreated, Date dateModified) {
+//		super();
+//		this.sellerId = sellerId;
+//		this.username = username;
+//		this.password = password;
+//		this.dateCreated = dateCreated;
+//		this.dateModified = dateModified;
+//	}
 	public Seller( String username, String password) {
 		super();
 	
@@ -76,19 +79,19 @@ public class Seller {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-	public Date getDateModified() {
-		return dateModified;
-	}
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
-	}
-	
+//	public Date getDateCreated() {
+//		return dateCreated;
+//	}
+//	public void setDateCreated(Date dateCreated) {
+//		this.dateCreated = dateCreated;
+//	}
+//	public Date getDateModified() {
+//		return dateModified;
+//	}
+//	public void setDateModified(Date dateModified) {
+//		this.dateModified = dateModified;
+//	}
+//	
 	
 	
 }

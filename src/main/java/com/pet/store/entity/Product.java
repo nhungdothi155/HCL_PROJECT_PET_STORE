@@ -61,6 +61,10 @@ private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 private List<CartItem> cartItems = new ArrayList<CartItem>();
 
 
+public Product() {
+	super();
+}
+
 public Product(long productId, Category category, String productName, String description, String brand, String material,
 		String origin, int productNumbers, String photos, State productState) {
 	super();

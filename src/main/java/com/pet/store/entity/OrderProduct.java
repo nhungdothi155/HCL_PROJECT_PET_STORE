@@ -37,6 +37,10 @@ public class OrderProduct {
 		this.order = order;
 		this.orderProductNumber = orderProductNumber;
 	}
+	
+	public OrderProduct() {
+		super();
+	}
 	public long getOrderProductId() {
 		return orderProductId;
 	}

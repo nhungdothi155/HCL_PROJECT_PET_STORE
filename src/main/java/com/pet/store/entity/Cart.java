@@ -29,6 +29,9 @@ public class Cart {
 	private List<CartItem> cartItems = new ArrayList<CartItem>();
 	
 	
+	public Cart() {
+		super();
+	}
 	public Cart( Customer customer) {
 		super();
 		this.customer = customer;

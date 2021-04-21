@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import com.pet.store.entity.Seller;
 
 class SellerDAOImplTest {
+	
+	// Đẫ test xong 
 	private SellerDAOImpl sellerDao;
   
 	@BeforeAll
@@ -42,16 +44,16 @@ class SellerDAOImplTest {
 	@Test
 	void testDelete() {
 		System.out.println("test delete");
-		int id = 1;
+		Integer id = 19;
 		sellerDao.delete(id);
-		Seller seller = (Seller) sellerDao.getElementById(id);
+		Seller seller = sellerDao.getElementById(id);
 		Assertions.assertNull(seller);
 	}
 
 	@Test
 	void testIsLogin() {
 		System.out.println("test login");
-		boolean flagTrue= sellerDao.isLogin("admin","admin");
+		boolean flagTrue= sellerDao.isLogin("admin1","admin1");
 		boolean flagFalse = sellerDao.isLogin("sd", "dsfs");
 		
 		Assertions.assertTrue(flagTrue);
@@ -79,17 +81,18 @@ class SellerDAOImplTest {
 
 	@Test
 	void testUpdateSeller() {
-		Integer id = 1;
-		Seller seller = new Seller(id, "admin1","admin1change");
+		Integer id = 20;
+		Seller seller = sellerDao.getElementById(id);
+		seller.setPassword("update");
 		sellerDao.update(seller);
 		Seller findSeller = sellerDao.getElementById(id);
-		Assertions.assertEquals(seller.getPassword(),findSeller.getPassword(), "Change password successfully");
+		Assertions.assertEquals(seller.getPassword(),findSeller.getPassword(), "Change password successfully " +sellerDao.update(seller)  );
 		
 	}
 
 	@Test
 	void testGetElementByIdInt() {
-		Integer id = 1;
+		Integer id = 15;
 		Seller seller = sellerDao.getElementById(id);
 		Assertions.assertNotNull(seller);
 	}

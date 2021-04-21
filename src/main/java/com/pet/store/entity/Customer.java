@@ -62,6 +62,12 @@ public class Customer {
 		this.password = password;
 	}
 	
+	
+	public Customer() {
+		super();
+	}
+
+
 	public List<Cart> getCarts() {
 		return carts;
 	}
