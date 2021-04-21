@@ -3,6 +3,7 @@ package com.pet.store.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +17,8 @@ public class Category {
 	// id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="category_id")
-	private long categoryId;
+	@Column(name="category_id",updatable = false, nullable = false)
+	private Long categoryId;
 	//name
 	@Column(name="category_name")
 	private String categoryName;
@@ -26,7 +27,7 @@ public class Category {
 	private String subCategories;
 	
 	// list of product in a cateogries
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category",cascade = CascadeType.ALL)
 	private List<Product> products = new ArrayList<Product>();
 
 	public Category(long categoryId, String categoryName, String subCategories, List<Product> products) {

@@ -1,5 +1,6 @@
 package com.pet.store.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,10 +45,10 @@ public class Customer {
 	private String password;
 	
 	@OneToMany(mappedBy="customer")
-	private List<Cart> carts;
+	private List<Cart> carts= new ArrayList<Cart>();
 	
 	@OneToMany(mappedBy="customer")
-	private List<Order> orders;
+	private List<Order> orders = new ArrayList<Order>();
 	
 	public Customer( String firstname, String lastname, Date dob, String address, String phone, String username,
 			String password) {
@@ -68,21 +69,27 @@ public class Customer {
 	}
 
 
+
+
 	public List<Cart> getCarts() {
 		return carts;
 	}
+
 
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
 
+
 	public List<Order> getOrders() {
 		return orders;
 	}
 
+
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+
 
 	public long getId() {
 		return id;

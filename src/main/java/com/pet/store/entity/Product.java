@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,11 +23,11 @@ public class Product {
 //id	
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="product_id")
+@Column(name="product_id",updatable = false, nullable = false)
 private long productId;
 //category
-@ManyToOne
-@JoinColumn(name="category_id",nullable=false)
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name="category_id",updatable = false, nullable = false)
 private Category category;
 //name of product
 @Column(name="product_name")
@@ -43,6 +44,8 @@ private String material;
 // the origin of product
 @Column(name="origin")
 private String origin;
+@Column(name="price")
+private float price;
 // the numbers of product are available
 @Column(name="product_numbers")
 private int productNumbers;
@@ -66,7 +69,7 @@ public Product() {
 }
 
 public Product(long productId, Category category, String productName, String description, String brand, String material,
-		String origin, int productNumbers, String photos, State productState) {
+		String origin,float price, int productNumbers, String photos, State productState) {
 	super();
 	this.productId = productId;
 	this.category = category;
@@ -75,13 +78,14 @@ public Product(long productId, Category category, String productName, String des
 	this.brand = brand;
 	this.material = material;
 	this.origin = origin;
+	this.price = price;
 	this.productNumbers = productNumbers;
 	this.photos = photos;
 	this.productState = productState;
 }
 
 public Product( Category category, String productName, String description, String brand, String material,
-		String origin, int productNumbers, String photos, State productState) {
+		String origin,float price, int productNumbers, String photos, State productState) {
 	super();
 	
 	this.category = category;
@@ -90,11 +94,21 @@ public Product( Category category, String productName, String description, Strin
 	this.brand = brand;
 	this.material = material;
 	this.origin = origin;
+	this.price= price;
 	this.productNumbers = productNumbers;
 	this.photos = photos;
 	this.productState = productState;
 }
 
+
+
+public List<CartItem> getCartItems() {
+	return cartItems;
+}
+
+public void setCartItems(List<CartItem> cartItems) {
+	this.cartItems = cartItems;
+}
 
 public List<OrderProduct> getOrderProducts() {
 	return orderProducts;
@@ -106,6 +120,15 @@ public void setOrderProducts(List<OrderProduct> orderProducts) {
 
 public Category getCategory() {
 	return category;
+}
+
+
+public float getPrice() {
+	return price;
+}
+
+public void setPrice(float price) {
+	this.price = price;
 }
 
 public void setCategory(Category category) {

@@ -92,7 +92,6 @@ public class SellerDAOImpl extends GenericDAO<Seller> implements SellerDAO {
 		session.beginTransaction();
 	    Seller seller = getElementById(id);
 	    session.delete(seller);
-	   
 	    session.getTransaction().commit();
 	  
 

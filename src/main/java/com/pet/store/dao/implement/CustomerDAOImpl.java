@@ -2,43 +2,75 @@ package com.pet.store.dao.implement;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
+import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.CustomerDAO;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.entity.*;
 public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO{
-
+	private static SessionFactory sessionFactory ;
+	  private static Session session ;
 	@Override
 	public List<Customer> listAll() {
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Query<Customer> query= session.createQuery("select p from Customer p",Customer.class);
+	    List<Customer> customers = query.getResultList();
 		// TODO Auto-generated method stub
-		return null;
+		return customers;
+		
 	}
 
 	@Override
 	public int insert(Customer t) {
-		// TODO Auto-generated method stub
-		return -1;
+		if(t!=null) {
+			sessionFactory = HibernateUtil.getSessionFactory();
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.save(t);
+			session.getTransaction().commit();
+			
+			return 1;
+			}
+			return -1;
 		
 		
 	}
 
 	@Override
 	public int update(Customer t) {
-		return -1;
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(t);
+		session.getTransaction().commit();
 		
-		// TODO Auto-generated method stub
+		return 1;
 		
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+	   Customer customer = getElementById(id);
+	    session.delete(customer);
+	    session.getTransaction().commit();
 		
 	}
 
 	@Override
 	public Customer getElementById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Customer customer = session.find(Customer.class, id);
+		 return customer;
 	}
 	
 

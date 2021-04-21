@@ -2,44 +2,75 @@ package com.pet.store.dao.implement;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
+import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.dao.PetDAO;
 import com.pet.store.entity.Pet;
+import com.pet.store.entity.Product;
 
 public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
-
+	private static SessionFactory sessionFactory ;
+	  private static Session session ;
 	@Override
 	public List<Pet> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Query<Pet> query = session.createQuery("select p from Pet p", Pet.class);
+	    List<Pet> pets = query.getResultList();
+	    return pets;
 	}
 
 	@Override
 	public int insert(Pet t) {
-		return -1;
-		
-		// TODO Auto-generated method stub
+		if(t!=null) {
+			sessionFactory = HibernateUtil.getSessionFactory();
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.save(t);
+			session.getTransaction().commit();
+			
+			return 1;
+			}
+			return -1;
 		
 	}
 
 	@Override
 	public int update(Pet t) {
-		return -1;
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(t);
+		session.getTransaction().commit();
 		
-		// TODO Auto-generated method stub
+		return 1;
 		
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+	   Pet pet = getElementById(id);
+	    session.delete(pet);
+	    session.getTransaction().commit();
 		
 	}
 
 	@Override
 	public Pet getElementById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Pet pet = session.find(Pet.class, id);
+		return pet;
 	}
 
 }

@@ -36,7 +36,7 @@ class OrderProductDAOImplTest {
 
 		orderDAO = new OrderDAOImpl();
 		productDAO = new ProductDAOImpl();
-		orderDAO = new OrderDAOImpl();
+		orderProductDAO = new OrderProductDAOImpl();
 	
 	}
 
@@ -64,8 +64,8 @@ class OrderProductDAOImplTest {
 
 	@Test
 	void testInsertOrderProduct() {
-		Integer id = 1;
-		Product product = productDAO.getElementById(id);
+		Integer id =1;
+		Product product = productDAO.getElementById(3);
 		Order order = orderDAO.getElementById(id);
 		OrderProduct orderProduct = new OrderProduct(product, order,2);
 		int n = orderProductDAO.insert(orderProduct);

@@ -42,14 +42,14 @@ class OrderDAOImplTest {
 	}
 
 
-	@Test
-	void testDelete() {
-		System.out.println("test delete");
-		Integer id = 1;
-		orderDAO.delete(id);
-		Order order =  orderDAO.getElementById(id);
-		Assertions.assertNull(order);
-	}
+//	@Test
+//	void testDelete() {
+//		System.out.println("test delete");
+//		Integer id = 1;
+//		orderDAO.delete(id);
+//		Order order =  orderDAO.getElementById(id);
+//		Assertions.assertNull(order);
+//	}
 
 	@Test
 	void testListAll() {

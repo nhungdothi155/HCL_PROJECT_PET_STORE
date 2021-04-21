@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name="order")
+@Table(name="\"order\"")
 public class Order {
 
 	//id
@@ -65,6 +65,25 @@ public class Order {
 	}
 	public Order() {
 		super();
+	}
+	
+	public Order(long orderId, Customer customer, double totalPrice, String customerFirstname, String customerLastname,
+			String customerCountry, String customerCity, String customerAddress, String customerPhone,
+			String customerEmail, String zipCode, String note, List<OrderProduct> orderProducts) {
+		super();
+		this.orderId = orderId;
+		this.customer = customer;
+		this.totalPrice = totalPrice;
+		this.customerFirstname = customerFirstname;
+		this.customerLastname = customerLastname;
+		this.customerCountry = customerCountry;
+		this.customerCity = customerCity;
+		this.customerAddress = customerAddress;
+		this.customerPhone = customerPhone;
+		this.customerEmail = customerEmail;
+		this.zipCode = zipCode;
+		this.note = note;
+		this.orderProducts = orderProducts;
 	}
 	public Order(long orderId, Customer customer, double totalPrice, String customerFirstname, String customerLastname,
 			String customerCountry, String customerCity, String customerAddress, String customerPhone,

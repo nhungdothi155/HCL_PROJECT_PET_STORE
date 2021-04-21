@@ -71,6 +71,7 @@ class CustomerDAOImplTest {
 		Customer cus = cusDAO.getElementById(id);
 		String address = "address new";
 		cus.setAddress(address);
+		cusDAO.update(cus);
 		Customer findCus = cusDAO.getElementById(id);
 		
 		Assertions.assertEquals(findCus.getAddress(),address );

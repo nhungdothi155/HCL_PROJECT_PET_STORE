@@ -64,10 +64,12 @@ class ProductDAOImplTest {
 	@Test
 	void testInsertProduct() {
 		System.out.println("test insert");
-		int id =1;
+		int id =2;
 		 Category category = categoryDao.getElementById(id);
-		 Product product = new Product(category,"Dây đeo cổ","dài","no brand","vải","việt name",2000,"https://pixabay.com/get/ga1ea62bd5a5e2f81c7af13dc062a873fb9cd8b1559b47be531ed6e9578f89f5134a225071bd55606681760c15d0600ce_1920.jpg",State.USED);
+		 
+		 Product product = new Product(category,"Dây đeo cổ","dài","no brand","vải","việt name",3,2000,"https://pixabay.com/get/ga1ea62bd5a5e2f81c7af13dc062a873fb9cd8b1559b47be531ed6e9578f89f5134a225071bd55606681760c15d0600ce_1920.jpg",State.USED);
 		 int n = productDao.insert(product);
+		 System.out.println(category.getCategoryId());
 		 Assertions.assertTrue(n>0);
 	}
 

@@ -13,11 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name = "cart")
+@Table(name = "\"cart\"")
 public class Cart {
 	//id , cartid, customer_id,datemodifed, datecread 
 	@Id
-	@Column(name="cart_id")
+	@Column(name="cart_id",nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cartId;
 	

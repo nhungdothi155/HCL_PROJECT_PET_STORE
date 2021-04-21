@@ -40,15 +40,15 @@ class CategoryDAOImplTest {
 		System.out.println("end");
 	}
 
-
-	@Test
-	void testDelete() {
-		System.out.println("test delete");
-		Integer id = 1;
-		categoryDao.delete(id);
-		Category category =  categoryDao.getElementById(id);
-		Assertions.assertNull(category);
-	}
+//
+//	@Test
+//	void testDelete() {
+//		System.out.println("test delete");
+//		Integer id = 1;
+//		categoryDao.delete(id);
+//		Category category =  categoryDao.getElementById(id);
+//		Assertions.assertNull(category);
+//	}
 
 	@Test
 	void testListAll() {
@@ -74,8 +74,9 @@ class CategoryDAOImplTest {
 		Category category = categoryDao.getElementById(id);
 		String name = "hang";
 		category.setCategoryName(name);
+		categoryDao.update(category);
 		Category findCategory = categoryDao.getElementById(id);
-		Assertions.assertEquals(findCategory.getClass(), name);
+		Assertions.assertEquals(findCategory.getCategoryName(), name);
 		
 		
 	}

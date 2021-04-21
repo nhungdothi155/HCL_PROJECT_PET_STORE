@@ -77,7 +77,7 @@ class CartItemDAOImplTest {
 		Integer id =1;
 		CartItem cartItem = cartItemDao.getElementById(id);
 		cartItem.setQuantity(54);
-		cartItemDao.insert(cartItem);
+		cartItemDao.update(cartItem);
 		CartItem findcartItem = cartItemDao.getElementById(id);
 		Assertions.assertEquals(findcartItem.getQuantity(), 54);
 	}
