@@ -286,7 +286,7 @@ input[type=text]:placeholder {
     </div>
 
     <!-- Login Form -->
-    <form>
+    <form action="customer" method=POST >
       <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
       <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
       <input type="submit" class="fadeIn fourth" value="Log In">

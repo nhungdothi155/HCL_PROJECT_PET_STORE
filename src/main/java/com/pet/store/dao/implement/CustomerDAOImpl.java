@@ -72,6 +72,30 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 		Customer customer = session.find(Customer.class, id);
 		 return customer;
 	}
+
+	@Override
+	public boolean isLogin(String username, String password) {
+		 sessionFactory =  HibernateUtil.getSessionFactory();
+	 	    sessionFactory.openSession();
+	 	     session = sessionFactory.openSession();
+         session.beginTransaction();
+			Query<Customer> query = session.createQuery(
+					"Select s from Customer s where s.username= :username and s.password= :password", Customer.class);
+			query.setParameter("username", username);
+			query.setParameter("password", password);
+			
+			Customer customer = query.uniqueResult();
+
+			if(customer==null) {
+				
+				return false;
+		
+			}
+			else {
+				session.close();
+				return true;
+			}
+	}
 	
 
 }

@@ -9,7 +9,7 @@
 <body>
 <%
 String path= getServletContext().getContextPath();
-response.sendRedirect(path +"/homepage/customer");
+response.sendRedirect(path +"/customer");
 %>
 </body>
 </html>

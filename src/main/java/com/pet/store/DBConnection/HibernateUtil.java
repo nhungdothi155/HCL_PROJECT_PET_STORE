@@ -1,5 +1,8 @@
 package com.pet.store.DBConnection;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -15,6 +18,10 @@ public class HibernateUtil {
 	 static {   
 	        try 
 	        {
+	        	Logger log = Logger.getLogger("org.hibernate");
+	        	log.setLevel(Level.OFF);
+	        	System.setProperty("org.apache.commons.logging.Log",
+	        	"org.apache.commons.logging.impl.NoOpLog");
 	            Configuration cfg = new Configuration();
 	            cfg.configure("com/pet/store/DBConnection/hibernate_mysql.cfg.xml");
                 cfg.addAnnotatedClass(Pet.class)
