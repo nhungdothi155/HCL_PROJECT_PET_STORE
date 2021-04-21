@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.dao.OrderDAO;
+import com.pet.store.entity.Cart;
 import com.pet.store.entity.Order;
 import com.pet.store.entity.Product;
 public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
@@ -71,6 +72,20 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 		session.beginTransaction();
 		 Order order = session.find(Order.class, id);
 		 return order;
+	}
+	public Order findOrderByCustomerId(int custId) {
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		  Query<Order> query = session.createQuery(
+					"Select c from Order c where c.orderId= :orderId ", Order.class);
+	     query.setParameter("customerId", custId);
+	     Order order= query.getSingleResult();
+	     if(order!=null) {
+	    	 return order;
+	     }
+			return null;
+		
 	}
 
 }

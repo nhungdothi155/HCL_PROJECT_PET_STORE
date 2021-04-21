@@ -10,6 +10,7 @@ import com.pet.store.dao.CartDAO;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.entity.Cart;
 import com.pet.store.entity.Category;
+import com.pet.store.entity.Customer;
 public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
 	private static SessionFactory sessionFactory ;
 	  private static Session session ;
@@ -68,5 +69,19 @@ public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
 		Cart cart = session.find(Cart.class, id);
 		 return cart;
 	}
+	public Cart findCartByCustomerId(int custId) {
+		 sessionFactory =  HibernateUtil.getSessionFactory();
+	 	     session = sessionFactory.openSession();
+     session.beginTransaction();
+     Query<Cart> query = session.createQuery(
+				"Select c from Cart c where c.customerId= :customerId ", Cart.class);
+     query.setParameter("customerId", custId);
+     Cart cart = query.getSingleResult();
+     if(cart!=null) {
+    	 return cart;
+     }
+		return null;
+	}
+	
 
 }

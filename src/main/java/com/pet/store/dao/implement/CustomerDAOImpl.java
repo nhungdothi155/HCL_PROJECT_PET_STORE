@@ -74,9 +74,8 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 	}
 
 	@Override
-	public boolean isLogin(String username, String password) {
+	public Customer isLogin(String username, String password) {
 		 sessionFactory =  HibernateUtil.getSessionFactory();
-	 	    sessionFactory.openSession();
 	 	     session = sessionFactory.openSession();
          session.beginTransaction();
 			Query<Customer> query = session.createQuery(
@@ -86,15 +85,7 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 			
 			Customer customer = query.uniqueResult();
 
-			if(customer==null) {
-				
-				return false;
-		
-			}
-			else {
-				session.close();
-				return true;
-			}
+			return customer;
 	}
 	
 

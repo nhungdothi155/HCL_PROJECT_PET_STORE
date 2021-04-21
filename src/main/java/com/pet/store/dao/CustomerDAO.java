@@ -1,11 +1,12 @@
 package com.pet.store.dao;
 
-import java.util.List;
-
-import com.pet.store.model.Customer;
+import com.pet.store.entity.Cart;
+import com.pet.store.entity.Order;
+import com.pet.store.entity.Customer;
 
 public interface CustomerDAO {
-	public boolean isLogin(String username, String password);
+	public Customer isLogin(String username, String password);
+	
 
 
 }

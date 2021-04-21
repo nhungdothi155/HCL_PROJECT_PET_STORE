@@ -48,6 +48,13 @@ public class Cart {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+	
 	
 	
 
