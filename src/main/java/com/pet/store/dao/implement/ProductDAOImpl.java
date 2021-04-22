@@ -101,6 +101,18 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 		
 		
 	}
+	public List<Product> searchProductByCategoryNameAndSubCategory(String categoryName,String subCategoryName){
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Product>query = session.createSQLQuery("select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ? and category.sub_categories = ?");
+		query.setParameter(1, categoryName);
+		query.setParameter(2, subCategoryName);
+		List<Product> products = query.getResultList();
+		return products;
+		
+		
+	}
 
 	@Override
 	public Product getElementById(long id) {

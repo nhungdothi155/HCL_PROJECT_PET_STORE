@@ -69,5 +69,30 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 		Category category = session.find(Category.class, id);
 		 return category;
 	}
+	public Category getSubCategory(String categoryName, String subCategory){
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Category> query = session.createQuery("select c from Category c where c.categoryName= : categoryName and c.subCategories= : subCategory",Category.class);
+		query.setParameter("categoryName", categoryName);
+		query.setParameter("subCategories", subCategory);
+		Category cat = query.getSingleResult();
+		return cat;
+		
+		
+	}
+	public List<Category> getCategoryByName(String categoryName){
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Category> query = session.createQuery("select c from Category c where c.categoryName= : categoryName ",Category.class);
+		query.setParameter("categoryName", categoryName);
+		List<Category> cat = query.getResultList();
+		return cat;
+		
+		
+	}
+	
+	
 
 }

@@ -7,7 +7,7 @@ import com.pet.store.entity.Product;
 
 public interface CategoryService {
 	public List<Category> getAllCategories();
-	public List<Product> getProductsInCategory();
+	public List<Category> getCategoriesByName(String categoryName);
 	public void insertCategory(Category category);
 	public void updateCategory(Category category);
 	public void deleteCategory(int id);

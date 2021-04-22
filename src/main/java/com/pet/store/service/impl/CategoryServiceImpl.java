@@ -2,40 +2,43 @@ package com.pet.store.service.impl;
 
 import java.util.List;
 
+import com.pet.store.dao.implement.CategoryDAOImpl;
 import com.pet.store.entity.Category;
 import com.pet.store.entity.Product;
 import com.pet.store.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
-
+	private CategoryDAOImpl catDAO;
+	public CategoryServiceImpl() {
+		catDAO = new CategoryDAOImpl();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public List<Category> getAllCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		return catDAO.listAll();
 	}
 
 	@Override
-	public List<Product> getProductsInCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Category> getCategoriesByName(String name){
+		return catDAO.getCategoryByName(name);
+		
 	}
 
 	@Override
 	public void insertCategory(Category category) {
-		// TODO Auto-generated method stub
+		catDAO.insert(category);
 		
 	}
 
 	@Override
 	public void updateCategory(Category category) {
-		// TODO Auto-generated method stub
+		catDAO.update(category);
 		
 	}
 
 	@Override
 	public void deleteCategory(int id) {
-		// TODO Auto-generated method stub
-		
+		catDAO.delete(id);
 	}
 
 }
