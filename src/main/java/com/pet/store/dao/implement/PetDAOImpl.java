@@ -72,5 +72,16 @@ public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
 		Pet pet = session.find(Pet.class, id);
 		return pet;
 	}
+	public List<Pet> searchPetByWords(String word){
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Pet>query = session.createQuery("select p from Pet p where p.petName like %:keyword% or p.petType like %:keyword%",Pet.class);
+		query.setParameter("keyword", word );
+		List<Pet> pets = query.getResultList();
+		return pets;
+		
+		
+	}
 
 }

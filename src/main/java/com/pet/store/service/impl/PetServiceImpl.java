@@ -2,26 +2,32 @@ package com.pet.store.service.impl;
 
 import java.util.List;
 
+import com.pet.store.dao.implement.PetDAOImpl;
 import com.pet.store.entity.Pet;
 import com.pet.store.service.PetService;
 
 public class PetServiceImpl implements PetService {
-
+	private PetDAOImpl petDAO;
+	public PetServiceImpl() {
+		petDAO = new PetDAOImpl();
+		
+	}
 	@Override
 	public void insertPet(Pet Pet) {
-		// TODO Auto-generated method stub
+		petDAO.insert(Pet);
+		
 		
 	}
 
 	@Override
 	public void deletePet(int id) {
-		// TODO Auto-generated method stub
+		petDAO.delete(id);
 		
 	}
 
 	@Override
 	public void updatePet(Pet pet) {
-		// TODO Auto-generated method stub
+		petDAO.update(pet);
 		
 	}
 
@@ -33,8 +39,8 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 	public List<Pet> findAllPet() {
-		// TODO Auto-generated method stub
-		return null;
+		return petDAO.listAll();
+		
 	}
 
 }

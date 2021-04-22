@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.dao.ProductDAO;
+import com.pet.store.entity.Pet;
 import com.pet.store.entity.Product;
 import com.pet.store.entity.Seller;
 public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
@@ -66,14 +67,48 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 		
 	}
 
-	@Override
-	public Product getElementById(long id) {
-		//pass
+	public List<Product> searchProductByWords(String word){
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		 Product product = session.find(Product.class, id);
-		 return product;
+		Query<Product>query = session.createQuery("select p from Product p where p.petName like %:keyword% or p.petType like %:keyword%",Product.class);
+		query.setParameter("keyword", word );
+		List<Product> products = query.getResultList();
+		return products;
+		
+		
+	}
+//	public List<Product> searchOrderPriceProductByWords(String word){
+//		sessionFactory = HibernateUtil.getSessionFactory();
+//		session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		Query<Product>query = session.createQuery("select p from Product p where p.petName like %:keyword% or p.petType like %:keyword%",Product.class);
+//		query.setParameter("keyword", word );
+//		List<Product> products = query.getResultList();
+//		return products;
+//		
+//		
+//	}
+	
+	public List<Product> searchProductByCategoryName(String categoryName){
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Product>query = session.createSQLQuery("select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ?");
+		query.setParameter(1, categoryName);
+		List<Product> products = query.getResultList();
+		return products;
+		
+		
+	}
+
+	@Override
+	public Product getElementById(long id) {
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Product product = session.find(Product.class, id);
+		return product;
 	}
 
 }

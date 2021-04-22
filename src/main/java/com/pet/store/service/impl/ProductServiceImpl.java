@@ -2,26 +2,32 @@ package com.pet.store.service.impl;
 
 import java.util.List;
 
+import com.pet.store.dao.implement.ProductDAOImpl;
 import com.pet.store.entity.Product;
 import com.pet.store.service.ProductService;
 
 public class ProductServiceImpl implements ProductService  {
-
+	private ProductDAOImpl productDAO;
+	
+	public ProductServiceImpl() {
+		productDAO = new ProductDAOImpl();
+	}
 	@Override
 	public void insertProduct(Product product) {
-		// TODO Auto-generated method stub
+		productDAO.insert(product);
+		
 		
 	}
 
 	@Override
 	public void deleteProduct(int id) {
-		// TODO Auto-generated method stub
+		productDAO.delete(id);
 		
 	}
 
 	@Override
 	public void updateProduct(Product product) {
-		// TODO Auto-generated method stub
+		productDAO.update(product);
 		
 	}
 
