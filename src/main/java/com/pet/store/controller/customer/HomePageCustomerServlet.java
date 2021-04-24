@@ -2,6 +2,7 @@ package com.pet.store.controller.customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import com.pet.store.dao.implement.CustomerDAOImpl;
 import com.pet.store.entity.CartItem;
 import com.pet.store.entity.Customer;
+import com.pet.store.entity.Product;
 import com.pet.store.service.CustomerService;
 import com.pet.store.service.impl.CustomerServiceImpl;
+import com.pet.store.service.impl.ProductServiceImpl;
 
 /**
  * Servlet implementation class HomePageCustomerServlet
@@ -26,12 +29,14 @@ public class HomePageCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private CustomerService cusService;
+	private ProductServiceImpl productService;
     /**
      * @see HttpServlet#HttpServlet()
      */
 	@Override
 	public void init() throws ServletException {
 		cusService = new CustomerServiceImpl();
+		productService = new ProductServiceImpl();
 	}
     public HomePageCustomerServlet() {
         super();
@@ -45,11 +50,15 @@ public class HomePageCustomerServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		Customer cus  = cusService.signIn(username, password);
+		List<Product> products = productService.findAllProduct();
+
 		if(cus!=null) {
 			//create new request 
+			request.setAttribute("products", products);
+			
 			RequestDispatcher rq= request.getRequestDispatcher("homepage.jsp");
 			HttpSession session = request.getSession();
-			session.setAttribute("customer_id", cus.getId());
+			session.setAttribute("customerId", cus.getId());
 			CustomerDAOImpl c = new CustomerDAOImpl();
 			Customer customer = c.getElementById(cus.getId());
 			

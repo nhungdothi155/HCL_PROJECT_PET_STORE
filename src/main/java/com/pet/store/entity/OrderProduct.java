@@ -1,5 +1,7 @@
 package com.pet.store.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="order_product")
-public class OrderProduct {
+public class OrderProduct implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//id
 	@Id
 	@Column(name="order_product_id")

@@ -1,7 +1,7 @@
 package com.pet.store.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,8 +18,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="product")
-public class Product {
+public class Product implements Serializable{
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 //id	
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)

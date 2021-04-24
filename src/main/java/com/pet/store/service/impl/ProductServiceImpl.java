@@ -40,7 +40,11 @@ public class ProductServiceImpl implements ProductService  {
 	@Override
 	public List<Product> findAllProduct() {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.listAll();
+	}
+	@Override
+	public Product getElementById(int id) {
+		return productDAO.getElementById(id);
 	}
 
 }

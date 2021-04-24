@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/carts.jsp=UTF-8
 encoding//src/test/java/com/pet/store/dao/implement/PetDAOImplTest.java=UTF-8
 encoding//src/test/java/com/pet/store/dao/implement/ProductDAOImplTest.java=UTF-8
 encoding//src/test/java/com/pet/store/dao/implement/SellerDAOImplTest.java=UTF-8

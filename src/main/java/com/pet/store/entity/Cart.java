@@ -1,5 +1,6 @@
 package com.pet.store.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name = "\"cart\"")
-public class Cart {
+public class Cart implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//id , cartid, customer_id,datemodifed, datecread 
 	@Id
 	@Column(name="cart_id",nullable = false)

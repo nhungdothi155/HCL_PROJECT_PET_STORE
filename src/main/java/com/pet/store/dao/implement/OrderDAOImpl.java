@@ -12,13 +12,18 @@ import com.pet.store.entity.Cart;
 import com.pet.store.entity.Order;
 import com.pet.store.entity.Product;
 public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
-	 private static SessionFactory sessionFactory ;
-	  private static Session session ;
+	private SessionFactory sessionFactory;
+	private  Session session;
+
+	// private static Transaction t;
+	public OrderDAOImpl() {
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session=  sessionFactory.openSession();
+		
+	}
 	@Override
 	public List<Order> listAll() {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-	    session.beginTransaction();
+	
 	    Query<Order> query= session.createSQLQuery("select * from hcl_project_pet_store.order");
 	    List<Order> orders = query.getResultList();
 		// TODO Auto-generated method stub
@@ -28,8 +33,6 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 	@Override
 	public int insert(Order t) {
 		if(t!=null) {
-			sessionFactory = HibernateUtil.getSessionFactory();
-			session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(t);
 			session.getTransaction().commit();
@@ -44,8 +47,6 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 
 	@Override
 	public int update(Order t) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.merge(t);
 		session.getTransaction().commit();
@@ -55,10 +56,8 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 	}
 
 	@Override
-	public void delete(int id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+	public void delete(long id) {
+	
 	   Order order = getElementById(id);
 	    session.delete(order);
 	    session.getTransaction().commit();
@@ -67,19 +66,15 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 
 	@Override
 	public Order getElementById(long id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+		
 		 Order order = session.find(Order.class, id);
 		 return order;
 	}
-	public Order findOrderByCustomerId(int custId) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+	public Order findOrderByCustomerId(long custId) {
+		
 		  Query<Order> query = session.createQuery(
 					"Select c from Order c where c.orderId= :orderId ", Order.class);
-	     query.setParameter("customerId", custId);
+	     query.setParameter("orderId", custId);
 	     Order order= query.getSingleResult();
 	     if(order!=null) {
 	    	 return order;

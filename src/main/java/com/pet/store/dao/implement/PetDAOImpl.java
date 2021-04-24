@@ -13,31 +13,32 @@ import com.pet.store.entity.Pet;
 import com.pet.store.entity.Product;
 
 public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
-	private static SessionFactory sessionFactory ;
-	  private static Session session ;
+	private static SessionFactory sessionFactory;
+	private static Session session;
+
 	@Override
 	public List<Pet> listAll() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    Query<Pet> query = session.createQuery("select p from Pet p", Pet.class);
-	    List<Pet> pets = query.getResultList();
-	    return pets;
+		session.beginTransaction();
+		Query<Pet> query = session.createQuery("select p from Pet p", Pet.class);
+		List<Pet> pets = query.getResultList();
+		return pets;
 	}
 
 	@Override
 	public int insert(Pet t) {
-		if(t!=null) {
+		if (t != null) {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(t);
 			session.getTransaction().commit();
-			
+
 			return 1;
-			}
-			return -1;
-		
+		}
+		return -1;
+
 	}
 
 	@Override
@@ -47,21 +48,21 @@ public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
 		session.beginTransaction();
 		session.update(t);
 		session.getTransaction().commit();
-		
+
 		return 1;
-		
+
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-	   Pet pet = getElementById(id);
-	    session.delete(pet);
-	    session.getTransaction().commit();
-		
+		Pet pet = getElementById(id);
+		session.delete(pet);
+		session.getTransaction().commit();
+
 	}
 
 	@Override
@@ -72,16 +73,17 @@ public class PetDAOImpl extends GenericDAO<Pet> implements PetDAO {
 		Pet pet = session.find(Pet.class, id);
 		return pet;
 	}
-	public List<Pet> searchPetByWords(String word){
+
+	public List<Pet> searchPetByWords(String word) {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query<Pet>query = session.createQuery("select p from Pet p where p.petName like %:keyword% or p.petType like %:keyword%",Pet.class);
-		query.setParameter("keyword", word );
+		Query<Pet> query = session.createQuery(
+				"select p from Pet p where p.petName like %:keyword% or p.petType like %:keyword%", Pet.class);
+		query.setParameter("keyword", word);
 		List<Pet> pets = query.getResultList();
 		return pets;
-		
-		
+
 	}
 
 }

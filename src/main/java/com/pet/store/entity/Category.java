@@ -1,5 +1,6 @@
 package com.pet.store.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="category")
-public class Category {
+public class Category implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

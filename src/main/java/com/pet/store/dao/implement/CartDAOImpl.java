@@ -1,4 +1,5 @@
 package com.pet.store.dao.implement;
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,77 +12,74 @@ import com.pet.store.dao.GenericDAO;
 import com.pet.store.entity.Cart;
 import com.pet.store.entity.Category;
 import com.pet.store.entity.Customer;
+
 public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
-	private static SessionFactory sessionFactory ;
-	  private static Session session ;
-	@Override
-	public List<Cart> listAll() {
+	private SessionFactory sessionFactory;
+	private Session session;
+
+	// private static Transaction t;
+	public CartDAOImpl() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    Query<Cart> query= session.createQuery("select c from Cart c",Cart.class);
-	    List<Cart> carts = query.getResultList();
+
+	}
+
+	@Override
+	public List<Cart> listAll() {
+
+		Query<Cart> query = session.createQuery("select c from Cart c", Cart.class);
+		List<Cart> carts = query.getResultList();
 		// TODO Auto-generated method stub
 		return carts;
 	}
 
 	@Override
 	public int insert(Cart t) {
-		if(t!=null) {
-			sessionFactory = HibernateUtil.getSessionFactory();
-			session = sessionFactory.openSession();
-			session.beginTransaction();
+		if (t != null) {
+
 			session.save(t);
 			session.getTransaction().commit();
-			
+
 			return 1;
-			}
-			return -1;
+		}
+		return -1;
 	}
 
 	@Override
 	public int update(Cart t) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+
 		session.update(t);
 		session.getTransaction().commit();
-		
+	
+
 		return 1;
 	}
 
 	@Override
-	public void delete(int id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+	public void delete(long id) {
+
 		Cart Cart = getElementById(id);
-	    session.delete(Cart);
-	    session.getTransaction().commit();	
-		
+		session.delete(Cart);
+		session.getTransaction().commit();
+
 	}
 
 	@Override
 	public Cart getElementById(long id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+
 		Cart cart = session.find(Cart.class, id);
-		 return cart;
+		return cart;
 	}
-	public Cart findCartByCustomerId(int custId) {
-		 sessionFactory =  HibernateUtil.getSessionFactory();
-	 	     session = sessionFactory.openSession();
-     session.beginTransaction();
-     Query<Cart> query = session.createQuery(
-				"Select c from Cart c where c.customerId= :customerId ", Cart.class);
-     query.setParameter("customerId", custId);
-     Cart cart = query.getSingleResult();
-     if(cart!=null) {
-    	 return cart;
-     }
+
+	public Cart findCartByCustomerId(long custId) {
+
+		Query<Cart> query = session.createQuery("Select c from Cart c where c.customer.id= :customerId ", Cart.class);
+		query.setParameter("customerId", custId);
+		Cart cart = query.getSingleResult();
+		if (cart != null) {
+			return cart;
+		}
 		return null;
 	}
-	
 
 }

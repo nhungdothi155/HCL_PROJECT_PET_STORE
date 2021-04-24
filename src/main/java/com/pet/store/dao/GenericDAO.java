@@ -12,7 +12,7 @@ public abstract class GenericDAO<T> {
 	public abstract List<T> listAll();
 	public abstract int insert(T t);
 	public abstract int update(T t);
-	public abstract void delete(int id);
+	public abstract void delete(long id);
 	public abstract T getElementById(long id);
 //	public Connection connection() {
 //		DataSource ds = DBConnection.getMySQLDataSource();
@@ -26,6 +26,7 @@ public abstract class GenericDAO<T> {
 //		return con;
 //		
 //	}
+	
 	
 
 }

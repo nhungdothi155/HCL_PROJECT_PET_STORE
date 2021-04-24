@@ -13,13 +13,18 @@ import com.pet.store.entity.OrderProduct;
 import com.pet.store.entity.Product;
 
 public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements OrderProductDAO {
-	 private static SessionFactory sessionFactory ;
-	  private static Session session ;
+	private SessionFactory sessionFactory;
+	private  Session session;
+
+	// private static Transaction t;
+	public OrderProductDAOImpl() {
+		sessionFactory = HibernateUtil.getSessionFactory();
+		session=  sessionFactory.openSession();
+		
+	}
 	@Override
 	public List<OrderProduct> listAll() {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-	    session.beginTransaction();
+		
 	    Query<OrderProduct> query= session.createSQLQuery("select * from hcl_project_pet_store.order_product");
 	    List<OrderProduct> orderProducts  = query.getResultList();
 	    return orderProducts;
@@ -28,9 +33,8 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	@Override
 	public int insert(OrderProduct t) {
 		if(t!=null) {
-			sessionFactory = HibernateUtil.getSessionFactory();
-			session = sessionFactory.openSession();
 			session.beginTransaction();
+		
 			session.save(t);
 			session.getTransaction().commit();
 			
@@ -43,8 +47,6 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 
 	@Override
 	public int update(OrderProduct t) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.update(t);
 		session.getTransaction().commit();
@@ -53,10 +55,8 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	}
 
 	@Override
-	public void delete(int id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+	public void delete(long id) {
+		
 	   OrderProduct orderProduct = getElementById(id);
 	    session.delete(orderProduct);
 	    session.getTransaction().commit();
@@ -65,9 +65,7 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 
 	@Override
 	public OrderProduct getElementById(long id) {
-		sessionFactory = HibernateUtil.getSessionFactory();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+		
 		 OrderProduct orderproduct = session.find(OrderProduct.class, id);
 		 return orderproduct;
 	}

@@ -9,6 +9,7 @@
       <property name = "hibernate.connection.password">11111</property>
           <property name="hibernate.hbm2ddl.auto">update</property>
       <property name="show_sql">true</property>
+      
        <property name="current_session_context_class">thread</property>
     <!-- fill your code here-->
   </session-factory>

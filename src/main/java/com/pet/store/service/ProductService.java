@@ -10,6 +10,7 @@ public interface ProductService {
 	public void updateProduct(Product product);
 	public List<Product> searchProductByWord( String word);
 	public List<Product> findAllProduct();
+	public Product getElementById(int id);
 	
 	
 

@@ -41,21 +41,22 @@ public class CustomerServiceImpl implements CustomerService {
 	
 
 	@Override
-	public void addCartForCustomer(int cusId) {
+	public void addCartForCustomer(long cusId) {
 		Customer c = cusDAO.getElementById(cusId);
-		if(c!=null) {
-		Cart cart = new Cart(c);
-		cartDAO.insert(cart);
+		Cart cart = cartDAO.findCartByCustomerId(cusId);
+		if(c!=null && cart==null) {
+		Cart newcart = new Cart(c);
+		cartDAO.insert(newcart);
 		}
 		
 	}
 	@Override
-	public Cart findCartByCustomerId(int custId) {
+	public Cart findCartByCustomerId(long custId) {
 		Cart cart = cartDAO.findCartByCustomerId(custId);
 		return cart;
 	}
 	@Override
-	public void addProductToCart(int cart_id, int product_id,int quantity) {
+	public void addProductToCart(long cart_id, long product_id,int quantity) {
 		Cart c = cartDAO.getElementById(cart_id);
 		Product p = productDAO.getElementById(product_id);
 		CartItem cp = new CartItem(c,p,quantity);
@@ -71,12 +72,12 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 	@Override
-	public Order findOrderByCustomerId(int custId) {
+	public Order findOrderByCustomerId(long custId) {
 		Order order = orderDAO.findOrderByCustomerId(custId);
 		return order;
 	}
 	@Override
-	public void addProductToOrder(int productId, int order_id, int quantity) {
+	public void addProductToOrder(long productId, long order_id, int quantity) {
 		Product product = productDAO.getElementById(productId);
 		Order order = orderDAO.getElementById(order_id);
 		OrderProduct op = new OrderProduct(product, order, quantity);
@@ -89,6 +90,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer signIn(String username, String password) {
 		Customer cus = cusDAO.isLogin(username, password);
 		return cus;
+	}
+
+	@Override
+	public Customer getCustomerById(long id) {
+	    return cusDAO.getElementById(id);
 	}
 
 }
