@@ -5,31 +5,34 @@
 <html>
 <body>
 	<h1>List product</h1>
-	<table>
-		<tr>
-			<th>Product
-			<th>
-			<th>Price</th>
-			<th>Select</th>
-		</tr>
-		<form action="order" method=POST>
-		
-		<c:forEach var="cartItem" items="${cartItemLists}" >
-		
+	<form action="order" method=POST>
+		<table>
 			<tr>
-			     <td><input type="checkbox" value="${cartItem.cartItemId }" name="cartItem" /></td>
-				<td><c:out value="${cartItem.product.category.getCategoryName()}" /></td>
-				<td><c:out value="${cartItem.product.price}" /></td>
-               <td><c:out value="${cartItem.quantity}" /></td>
-				<td><a href="product?id=<c:out value='${cartItem.product.productId}' />">Edit</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<th>Product
+				<th>
+				<th>Price</th>
+				<th>Select</th>
 			</tr>
 
-		</c:forEach>
-		<input type="submit" value="order" />
-					</form>
 
-	</table>
+			<c:forEach var="cartItem" items="${cartItemLists}">
+
+				<tr>
+					<td><input type="checkbox" value="${cartItem.cartItemId }"
+						name="cartItem" /></td>
+					<td><c:out
+							value="${cartItem.product.category.getCategoryName()}" /></td>
+					<td><c:out value="${cartItem.product.price}" /></td>
+					<td><c:out value="${cartItem.quantity}" /></td>
+				</tr>
+
+			</c:forEach>
+
+
+
+		</table>
+		<input type="submit" value="Order">
+	</form>
 
 </body>
 </html>

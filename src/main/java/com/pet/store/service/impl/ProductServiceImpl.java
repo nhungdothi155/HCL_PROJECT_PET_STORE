@@ -32,9 +32,13 @@ public class ProductServiceImpl implements ProductService  {
 	}
 
 	@Override
-	public List<Product> searchProductByWord(String word) {
+	public List<Product> searchProductByNameOrType(String search) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.searchProductByWords(search);
+	}
+	public List<Product> searchProductByRequire(String search,String require) {
+		// TODO Auto-generated method stub
+		return productDAO.searchProductByRequire(search, require);
 	}
 
 	@Override

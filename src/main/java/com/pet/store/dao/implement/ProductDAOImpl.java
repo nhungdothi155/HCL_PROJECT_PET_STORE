@@ -16,19 +16,19 @@ import com.pet.store.entity.Seller;
 
 public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 	private SessionFactory sessionFactory;
-	private  Session session;
+	private Session session;
 
 	// private static Transaction t;
 	public ProductDAOImpl() {
 		sessionFactory = HibernateUtil.getSessionFactory();
-		session=  sessionFactory.openSession();
-		
-		
+		session = sessionFactory.openSession();
+
 	}
+
 	@Override
 	public List<Product> listAll() {
 		// pass
-	
+
 		Query<Product> query = session.createQuery("select p from Product p", Product.class);
 		List<Product> products = query.getResultList();
 		// TODO Auto-generated method stub
@@ -69,10 +69,46 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 	}
 
 	public List<Product> searchProductByWords(String word) {
-		
+
 		Query<Product> query = session.createQuery(
-				"select p from Product p where p.petName like %:keyword% or p.petType like %:keyword%", Product.class);
-		query.setParameter("keyword", word);
+				"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') or p.category.categoryName LIKE CONCAT('%',:name,'%')",
+				Product.class);
+		query.setParameter("name", word);
+
+		List<Product> products = query.getResultList();
+		return products;
+
+	}
+
+	public List<Product> searchProductByRequire(String search, String require) {
+		Query<Product> query = null;
+		switch (require) {
+		case "feature":
+			query = session.createQuery(
+					"select distinct p from Product p inner join OrderProduct o on p.productId = o.product.productId where p.productName LIKE CONCAT('%',:name,'%') or p.category.categoryName LIKE CONCAT('%',:name,'%') ORDER BY p.dateCreated DESC",
+					Product.class);
+			break;
+		case "lowprice":
+			query = session.createQuery(
+					"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') or p.category.categoryName LIKE CONCAT('%',:name,'%') ORDER BY p.price ASC",
+					Product.class);
+			break;
+		case "highprice":
+			query = session.createQuery(
+					"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') or p.category.categoryName LIKE CONCAT('%',:name,'%') ORDER BY p.price DESC",
+					Product.class);
+			break;
+		case "newest":
+			query = session.createQuery(
+					"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') or p.category.categoryName LIKE CONCAT('%',:name,'%') ORDER BY p.dateCreated DESC",
+					Product.class);
+			break;
+		default:
+			break;
+
+		}
+		query.setParameter("name", search);
+
 		List<Product> products = query.getResultList();
 		return products;
 
@@ -81,7 +117,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 //		sessionFactory = HibernateUtil.getSessionFactory();
 //		session = sessionFactory.openSession();
 //		session.beginTransaction();
-//		Query<Product>query = session.createQuery("select p from Product p where p.petName like %:keyword% or p.petType like %:keyword%",Product.class);
+//		Query<Product>query = session.createQuery("select p from Product p where p.productName like %:keyword% or p.petType like %:keyword%",Product.class);
 //		query.setParameter("keyword", word );
 //		List<Product> products = query.getResultList();
 //		return products;
@@ -90,7 +126,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 //	}
 
 	public List<Product> searchProductByCategoryName(String categoryName) {
-		
+
 		Query<Product> query = session.createSQLQuery(
 				"select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ?");
 		query.setParameter(1, categoryName);
@@ -100,7 +136,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 	}
 
 	public List<Product> searchProductByCategoryNameAndSubCategory(String categoryName, String subCategoryName) {
-		
+
 		Query<Product> query = session.createSQLQuery(
 				"select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ? and category.sub_categories = ?");
 		query.setParameter(1, categoryName);
@@ -112,7 +148,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 
 	@Override
 	public Product getElementById(long id) {
-	
+
 		Product product = session.find(Product.class, id);
 		return product;
 	}

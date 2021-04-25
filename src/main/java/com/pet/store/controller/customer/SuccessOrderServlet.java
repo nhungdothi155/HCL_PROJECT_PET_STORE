@@ -51,6 +51,7 @@ public class SuccessOrderServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(request.getSession().getAttribute("customerId")!=null) {
 		// get list cartItems
 //		List<CartItem> cartItems = (List<CartItem>) request.getSession().getAttribute("orders");
 		String[] cartItemIds = request.getParameterValues("id");
@@ -89,6 +90,10 @@ public class SuccessOrderServlet extends HttpServlet {
 		request.setAttribute("products", products);
 
 		request.getRequestDispatcher("homepage.jsp").forward(request, response);
+		}
+		else {
+			response.sendRedirect(request.getServletContext().getContextPath() + "/login");
+		}
 
 	}
 

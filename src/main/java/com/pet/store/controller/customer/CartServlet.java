@@ -41,49 +41,57 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// having customer id and product id to add to a cart
-		long customerId = Long.parseLong(request.getSession().getAttribute("customerId").toString());
-		int productId = Integer.parseInt(request.getParameter("id"));
-		System.out.println(customerId + " customer Id");
-		// add cart for a cusotmer if cart is not exits
-		customerService.addCartForCustomer((int) customerId);
-		// find cart by ccusotmer id
-		Cart cart = customerService.findCartByCustomerId(customerId);
-		// find product in of this customer in the cart item
-//		CartItem cartItem = cartItemService.getCartItemByProductId(productId);
-		CartItem cartItem = cart.getCartItems().stream().filter(c->c.getProduct().getProductId() ==productId).findFirst().orElse(null);
-	
-		//System.out.println(cartItem.getProduct().getMaterial() + "k");
+		if(request.getSession().getAttribute("customerId")!=null) {
+			
+			long customerId = Long.parseLong(request.getSession().getAttribute("customerId").toString());
+			
+			int productId = Integer.parseInt(request.getParameter("id"));
+			System.out.println(customerId + " customer Id");
+			// add cart for a cusotmer if cart is not exits
+			customerService.addCartForCustomer((int) customerId);
+			// find cart by ccusotmer id
+			Cart cart = customerService.findCartByCustomerId(customerId);
+			// find product in of this customer in the cart item
+//			CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+			CartItem cartItem = cart.getCartItems().stream().filter(c->c.getProduct().getProductId() ==productId).findFirst().orElse(null);
 		
-		// if product exists , add 1 to the quanity of order_product
-		// else
-		// add the product into cart
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		System.out.println(productId + "productId");
-		if (cartItem != null) {
-			System.out.println(cartItem.getCartItemId()  + " cartItem"); 
-			cartItem.setQuantity(cartItem.getQuantity() + 1);
-			cartItemService.updateCartItem(cartItem);
-			Cart cartOfUser = customerService.findCartByCustomerId(customerId);
-			// find all the cartItem incluing products
-			cartItems = cartOfUser.getCartItems();
-	           System.out.println(cartItems.size() + "catsize");
+			//System.out.println(cartItem.getProduct().getMaterial() + "k");
+			
+			// if product exists , add 1 to the quanity of order_product
+			// else
+			// add the product into cart
+			List<CartItem> cartItems = new ArrayList<CartItem>();
+			System.out.println(productId + "productId");
+			if (cartItem != null) {
+				System.out.println(cartItem.getCartItemId()  + " cartItem"); 
+				cartItem.setQuantity(cartItem.getQuantity() + 1);
+				cartItemService.updateCartItem(cartItem);
+				Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+				// find all the cartItem incluing products
+				cartItems = cartOfUser.getCartItems();
+		           System.out.println(cartItems.size() + "catsize");
 
 
-		} else {
-			customerService.addProductToCart( cart.getCartId(), productId, 2);
-			Cart cartOfUser = customerService.findCartByCustomerId(customerId);
-			// find all the cartItem incluing products
-			cartItems = cartOfUser.getCartItems();
-	         
+			} else {
+				customerService.addProductToCart( cart.getCartId(), productId, 2);
+				Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+				// find all the cartItem incluing products
+				cartItems = cartOfUser.getCartItems();
+		         
 
+			}
+			// find cart of by customer id agian
+			
+			request.setAttribute("cartItemLists", cartItems);
+			
+
+			RequestDispatcher rq = request.getRequestDispatcher("carts.jsp");
+			rq.forward(request, response);
 		}
-		// find cart of by customer id agian
+		else {
+			response.sendRedirect(request.getServletContext().getContextPath() + "/login");
+		}
 		
-		request.setAttribute("cartItemLists", cartItems);
-		
-
-		RequestDispatcher rq = request.getRequestDispatcher("carts.jsp");
-		rq.forward(request, response);
 
 	}
 
