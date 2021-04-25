@@ -78,8 +78,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	@Override
 	public void addProductToOrder(long productId, long order_id, int quantity) {
+		
 		Product product = productDAO.getElementById(productId);
 		Order order = orderDAO.getElementById(order_id);
+		
+		
 		OrderProduct op = new OrderProduct(product, order, quantity);
 		orderProductDAO.insert(op);
 	

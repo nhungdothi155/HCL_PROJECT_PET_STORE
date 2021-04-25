@@ -35,7 +35,7 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 	@Override
 	public int insert(Customer t) {
 		if (t != null) {
-
+			session.beginTransaction();
 			session.save(t);
 			session.getTransaction().commit();
 
@@ -47,7 +47,7 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 
 	@Override
 	public int update(Customer t) {
-
+		session.beginTransaction();
 		session.update(t);
 		session.getTransaction().commit();
 
@@ -57,7 +57,7 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 
 	@Override
 	public void delete(long id) {
-
+		session.beginTransaction();
 		Customer customer = getElementById(id);
 		session.delete(customer);
 		session.getTransaction().commit();
@@ -73,7 +73,7 @@ public class CustomerDAOImpl extends GenericDAO<Customer> implements CustomerDAO
 
 	@Override
 	public Customer isLogin(String username, String password) {
-
+		
 		Query<Customer> query = session.createQuery(
 				"Select s from Customer s where s.username= :username and s.password= :password", Customer.class);
 		query.setParameter("username", username);

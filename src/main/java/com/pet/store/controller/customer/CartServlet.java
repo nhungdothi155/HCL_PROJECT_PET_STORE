@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pet.store.entity.Cart;
 import com.pet.store.entity.CartItem;
-import com.pet.store.entity.Product;
 import com.pet.store.service.impl.CartItemServiceImpl;
 import com.pet.store.service.impl.CustomerServiceImpl;
 
@@ -44,39 +43,44 @@ public class CartServlet extends HttpServlet {
 		// having customer id and product id to add to a cart
 		long customerId = Long.parseLong(request.getSession().getAttribute("customerId").toString());
 		int productId = Integer.parseInt(request.getParameter("id"));
-		System.out.println(customerId);
+		System.out.println(customerId + " customer Id");
 		// add cart for a cusotmer if cart is not exits
 		customerService.addCartForCustomer((int) customerId);
 		// find cart by ccusotmer id
 		Cart cart = customerService.findCartByCustomerId(customerId);
 		// find product in of this customer in the cart item
-		CartItem cartItem = cart.getCartItems().stream().filter(p -> p.getProduct().getProductId() == productId)
-				.findAny().orElse(null);
+//		CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+		CartItem cartItem = cart.getCartItems().stream().filter(c->c.getProduct().getProductId() ==productId).findFirst().orElse(null);
+	
+		//System.out.println(cartItem.getProduct().getMaterial() + "k");
+		
 		// if product exists , add 1 to the quanity of order_product
 		// else
 		// add the product into cart
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+		System.out.println(productId + "productId");
 		if (cartItem != null) {
+			System.out.println(cartItem.getCartItemId()  + " cartItem"); 
 			cartItem.setQuantity(cartItem.getQuantity() + 1);
 			cartItemService.updateCartItem(cartItem);
+			Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+			// find all the cartItem incluing products
+			cartItems = cartOfUser.getCartItems();
+	           System.out.println(cartItems.size() + "catsize");
 
-		} else if(cartItem==null) {
-			customerService.addProductToCart((int) cart.getCartId(), productId, 2);
+
+		} else {
+			customerService.addProductToCart( cart.getCartId(), productId, 2);
+			Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+			// find all the cartItem incluing products
+			cartItems = cartOfUser.getCartItems();
+	         
+
 		}
 		// find cart of by customer id agian
-		Cart cartOfUser = customerService.findCartByCustomerId(customerId);
-		// find all the cartItem incluing products
-		List<CartItem> cartItems = cartOfUser.getCartItems();
-
-		// create a product list
-		List<Product> products = new ArrayList<Product>();
-		for (CartItem ci : cartItems) {
-			System.out.println(ci.getQuantity());
-			// add all product from cartItem to product lists
-			products.add(ci.getProduct());
-		}
+		
 		request.setAttribute("cartItemLists", cartItems);
-		// set products atrribute to use in carts.jsp
-		request.setAttribute("products", products);
+		
 
 		RequestDispatcher rq = request.getRequestDispatcher("carts.jsp");
 		rq.forward(request, response);

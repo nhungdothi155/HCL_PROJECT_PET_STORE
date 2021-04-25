@@ -20,7 +20,7 @@
 			     <td><input type="checkbox" value="${cartItem.cartItemId }" name="cartItem" /></td>
 				<td><c:out value="${cartItem.product.category.getCategoryName()}" /></td>
 				<td><c:out value="${cartItem.product.price}" /></td>
-
+               <td><c:out value="${cartItem.quantity}" /></td>
 				<td><a href="product?id=<c:out value='${cartItem.product.productId}' />">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			</tr>

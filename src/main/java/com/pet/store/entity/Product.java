@@ -27,11 +27,11 @@ public class Product implements Serializable{
 //id	
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="product_id",updatable = false, nullable = false)
+@Column(name="product_id", nullable = false)
 private long productId;
 //category
-@ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name="category_id",updatable = false, nullable = false)
+@ManyToOne
+@JoinColumn(name="category_id", nullable = false)
 private Category category;
 //name of product
 @Column(name="product_name")

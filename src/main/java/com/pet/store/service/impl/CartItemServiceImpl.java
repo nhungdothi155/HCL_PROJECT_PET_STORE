@@ -29,5 +29,8 @@ public class CartItemServiceImpl implements CartItemService {
 		return cartItemDao.getElementById(id);
 		
 	}
+//	public CartItem getCartItemByProductId(long productId) {
+//		return cartItemDao.getCartItemByProductId(productId);
+//	}
 
 }

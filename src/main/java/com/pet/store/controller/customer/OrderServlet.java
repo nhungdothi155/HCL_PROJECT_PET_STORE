@@ -44,10 +44,8 @@ public class OrderServlet extends HttpServlet {
 	    	 CartItem cartItem= cartItemService.getCartItemById(Long.parseLong(id));
 	    	 list.add(cartItem);
 	     }
-	     HttpSession session = request.getSession();
-	     
-		 session.setAttribute("orders", list);
-		System.out.println(Arrays.toString(listCartItem));
+	    request.setAttribute("listCartItem",list);
+		System.out.println(list.size() + "size of all item in order");
 		request.getRequestDispatcher("order.jsp").forward(request, response);
 	}
 

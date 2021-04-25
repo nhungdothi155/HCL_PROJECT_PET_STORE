@@ -13,12 +13,15 @@ import com.pet.store.dao.GenericDAO;
 import com.pet.store.entity.CartItem;
 
 public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO {
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 	private Session session;
+	static {
+		sessionFactory = HibernateUtil.getSessionFactory();
+	}
 
 	// private static Transaction t;
 	public CartItemDAOImpl() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+	
 		session = sessionFactory.openSession();
 		
 
@@ -69,5 +72,12 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 		CartItem cartItem = session.find(CartItem.class, id);
 		return cartItem;
 	}
+//	public CartItem getCartItemByProductId(long productid) {
+//		
+//		Object object =  session.createSQLQuery("SELECT * from cart_item where product_id=" + productid).getSingleResult();
+//		
+//		CartItem cartItem = (CartItem) object;
+//		return cartItem;
+//	}
 
 }

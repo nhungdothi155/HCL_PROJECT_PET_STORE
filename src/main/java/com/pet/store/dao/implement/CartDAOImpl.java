@@ -72,7 +72,7 @@ public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
 	}
 
 	public Cart findCartByCustomerId(long custId) {
-
+        session.clear();
 		Query<Cart> query = session.createQuery("Select c from Cart c where c.customer.id= :customerId ", Cart.class);
 		query.setParameter("customerId", custId);
 		Cart cart = query.getSingleResult();

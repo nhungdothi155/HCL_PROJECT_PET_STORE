@@ -13,12 +13,13 @@ import com.pet.store.entity.OrderProduct;
 import com.pet.store.entity.Product;
 
 public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements OrderProductDAO {
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 	private  Session session;
-
+    static   {
+    	sessionFactory = HibernateUtil.getSessionFactory();    }
 	// private static Transaction t;
 	public OrderProductDAOImpl() {
-		sessionFactory = HibernateUtil.getSessionFactory();
+		
 		session=  sessionFactory.openSession();
 		
 	}
@@ -33,13 +34,16 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	@Override
 	public int insert(OrderProduct t) {
 		if(t!=null) {
-			session.beginTransaction();
 		
+			session.beginTransaction();
+			session.clear();
 			session.save(t);
+			session.flush();
 			session.getTransaction().commit();
 			
 			return 1;
 			}
+		
 			return -1;
 		
 		
@@ -47,10 +51,11 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 
 	@Override
 	public int update(OrderProduct t) {
+		if(session.beginTransaction()==null) {
 		session.beginTransaction();
-		session.update(t);
+		session.merge(t);
 		session.getTransaction().commit();
-		
+		}
 		return 1;
 	}
 
@@ -68,6 +73,13 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 		
 		 OrderProduct orderproduct = session.find(OrderProduct.class, id);
 		 return orderproduct;
+	}
+	public OrderProduct getElementByProductId(long productId) {
+		Query<OrderProduct> query = session.createQuery("SELECT o from OrderProduct o where o.Product.productId = : productId", OrderProduct.class);
+		query.setParameter("productId", productId);
+		OrderProduct op = query.uniqueResult();
+		return op;
+		
 	}
 
 }
