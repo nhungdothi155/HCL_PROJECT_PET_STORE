@@ -21,9 +21,8 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 
 	// private static Transaction t;
 	public CartItemDAOImpl() {
-	
+
 		session = sessionFactory.openSession();
-		
 
 	}
 
@@ -38,7 +37,7 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 	@Override
 	public int insert(CartItem t) {
 		if (t != null) {
-             session.beginTransaction();
+			session.beginTransaction();
 			session.save(t);
 			session.getTransaction().commit();
 
@@ -60,9 +59,12 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 
 	@Override
 	public void delete(long id) {
-       session.beginTransaction();
+
+		session.beginTransaction();
+		session.clear();
 		CartItem cartItem = getElementById(id);
 		session.delete(cartItem);
+		session.flush();
 		session.getTransaction().commit();
 	}
 
@@ -72,12 +74,5 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 		CartItem cartItem = session.find(CartItem.class, id);
 		return cartItem;
 	}
-//	public CartItem getCartItemByProductId(long productid) {
-//		
-//		Object object =  session.createSQLQuery("SELECT * from cart_item where product_id=" + productid).getSingleResult();
-//		
-//		CartItem cartItem = (CartItem) object;
-//		return cartItem;
-//	}
 
 }

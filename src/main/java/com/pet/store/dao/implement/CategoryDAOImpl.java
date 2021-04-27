@@ -54,7 +54,6 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 
 	}
 
-
 	@Override
 	public Category getElementById(long id) {
 
@@ -62,6 +61,7 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 		return category;
 	}
 
+	@Override
 	public Category getSubCategory(String categoryName, String subCategory) {
 
 		Query<Category> query = session.createQuery(
@@ -74,6 +74,7 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 
 	}
 
+	@Override
 	public List<Category> getCategoryByName(String categoryName) {
 
 		Query<Category> query = session.createQuery("select c from Category c where c.categoryName= : categoryName ",
@@ -86,8 +87,11 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		session.beginTransaction();
+		Category c = getElementById(id);
+		session.delete(c);
+		session.getTransaction().commit();
+
 	}
 
 }

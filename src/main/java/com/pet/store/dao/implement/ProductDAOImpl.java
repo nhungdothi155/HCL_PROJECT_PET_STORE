@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.dao.ProductDAO;
+import com.pet.store.entity.Category;
 import com.pet.store.entity.Pet;
 import com.pet.store.entity.Product;
 import com.pet.store.entity.Seller;
@@ -113,34 +114,27 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 		return products;
 
 	}
-//	public List<Product> searchOrderPriceProductByWords(String word){
-//		sessionFactory = HibernateUtil.getSessionFactory();
-//		session = sessionFactory.openSession();
-//		session.beginTransaction();
-//		Query<Product>query = session.createQuery("select p from Product p where p.productName like %:keyword% or p.petType like %:keyword%",Product.class);
-//		query.setParameter("keyword", word );
-//		List<Product> products = query.getResultList();
-//		return products;
-//		
-//		
-//	}
 
+	@Override
 	public List<Product> searchProductByCategoryName(String categoryName) {
 
-		Query<Product> query = session.createSQLQuery(
-				"select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ?");
-		query.setParameter(1, categoryName);
+		Query<Product> query = session.createQuery(
+				"select p from Product inner join Category c on p.categoryId = c.categoryId where c.categoryName= : categoryName",
+				Product.class);
+		query.setParameter("categoryName", categoryName);
 		List<Product> products = query.getResultList();
 		return products;
 
 	}
 
+	@Override
 	public List<Product> searchProductByCategoryNameAndSubCategory(String categoryName, String subCategoryName) {
 
-		Query<Product> query = session.createSQLQuery(
-				"select product.* from product inner join category on category.category_id = product.category_id where category.category_name = ? and category.sub_categories = ?");
-		query.setParameter(1, categoryName);
-		query.setParameter(2, subCategoryName);
+		Query<Product> query = session.createQuery(
+				"select p from Product inner join Category c on p.categoryId = c.categoryId where c.categoryName= :categoryName or c.subCategories= :subCategories",
+				Product.class);
+		query.setParameter("categoryName", categoryName);
+		query.setParameter("subCategories", subCategoryName);
 		List<Product> products = query.getResultList();
 		return products;
 

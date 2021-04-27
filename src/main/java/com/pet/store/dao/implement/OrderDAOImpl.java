@@ -76,7 +76,7 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 		Order order = session.find(Order.class, id);
 		return order;
 	}
-
+	@Override
 	public Order findOrderByCustomerId(long custId) {
 
 		Query<Order> query = session

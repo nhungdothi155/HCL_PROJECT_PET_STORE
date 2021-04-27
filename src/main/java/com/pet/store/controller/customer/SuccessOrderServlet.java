@@ -84,12 +84,12 @@ public class SuccessOrderServlet extends HttpServlet {
 			cartItemService.deleteCartItem(Long.parseLong(cartItemIds[i]));
 
 		}
-		List<Product> products = productService.findAllProduct();
+//		List<Product> products = productService.findAllProduct();
+//
+//		// create new request
+//		request.setAttribute("products", products);
 
-		// create new request
-		request.setAttribute("products", products);
-
-		request.getRequestDispatcher("homepage.jsp").forward(request, response);
+		response.sendRedirect(request.getServletContext().getContextPath() + "/customer");;
 		}
 		else {
 			response.sendRedirect(request.getServletContext().getContextPath() + "/login");
