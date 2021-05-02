@@ -2,9 +2,9 @@ package com.pet.store.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 @Table(name="category")
 public class Category implements Serializable{
@@ -30,6 +32,13 @@ public class Category implements Serializable{
 	// sub categories
 	@Column(name="sub_categories")
 	private String subCategories;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	// list of product in a cateogries
 	@OneToMany(mappedBy="category")
@@ -84,6 +93,26 @@ public class Category implements Serializable{
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	

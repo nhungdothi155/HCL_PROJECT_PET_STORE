@@ -29,7 +29,7 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 	@Override
 	public List<Order> listAll() {
 
-		Query<Order> query = session.createSQLQuery("select * from hcl_project_pet_store.order");
+		Query<Order> query = session.createQuery("select o from Order o",Order.class);
 		List<Order> orders = query.getResultList();
 		// TODO Auto-generated method stub
 		return orders;

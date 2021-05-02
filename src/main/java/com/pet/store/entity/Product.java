@@ -59,6 +59,11 @@ private int productNumbers;
 @Column(name="photos")
 private String photos;
 // the state of product : new or used
+@Column(name="weight")
+private Double weight;
+
+@Column(name="age")
+private Double age;
 @Enumerated(EnumType.STRING)
 @Column(name="product_state")
 private State productState;
@@ -209,6 +214,22 @@ public State getProductState() {
 }
 public void setProductState(State productState) {
 	this.productState = productState;
+}
+
+public double getWeight() {
+	return weight;
+}
+
+public void setWeight(double weight) {
+	this.weight = weight;
+}
+
+public double getAge() {
+	return age;
+}
+
+public void setAge(double age) {
+	this.age = age;
 }
 
 

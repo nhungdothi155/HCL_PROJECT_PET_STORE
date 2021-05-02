@@ -194,35 +194,26 @@
 							</div>
 						</div>
 					</div>
-						<c:if  test="${accessories !=null}">
-				
 					<table class="table table-striped table-hover table-bordered">
 						<thead>
 							<tr>
 								<th>#</th>
 								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Brand<i class="fa fa-sort"></i></th>
-								<th>Material</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Product State</th>
+								<th>Sub Cateogries</th>
+								<th>Date Created<i class="fa fa-sort"></i></th>
+								<th>Date Modified</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody id="myTable">
-						  <c:forEach items="${accessories}" var="p">
+						  <c:forEach items="${categories}" var="cat">
 							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.brand }</td>
-								<td>${p.material }</td>
-								<td>${p.origin }</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.productState }</td>
+								<td>${cat.categoryId }</td>
+								<td>${cat.categoryName }</td>
+								<td>${cat.subCategories} </td>
+								<td>${cat.dateCreated}</td>
+								<td>${cat.dateModified }</td>
+								
 								<td>
 									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -232,44 +223,6 @@
 							</tr>      
 						</tbody>
 					</table>
-				</c:if>
-				<c:if  test="${pets!=null}">
-				
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Weight</th>
-								<th>Age</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody id="myTable">
-						  <c:forEach items="${pets}" var="p">
-							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.origin}</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.weight }</td>
-								<td>${p.age }</td>
-								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-								</td>
-								</c:forEach>
-							</tr>      
-						</tbody>
-					</table>
-				</c:if>
 					<div class="clearfix">
 						<div class="hint-text">Showing <b>10</b> out of <b>25</b> entries</div>
 						<ul class="pagination">

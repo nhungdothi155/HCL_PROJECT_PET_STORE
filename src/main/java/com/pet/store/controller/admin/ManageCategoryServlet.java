@@ -9,24 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pet.store.entity.Customer;
-import com.pet.store.service.CustomerService;
-import com.pet.store.service.impl.CustomerServiceImpl;
+import com.pet.store.entity.Category;
+import com.pet.store.service.CategoryService;
+import com.pet.store.service.impl.CategoryServiceImpl;
 
 /**
- * Servlet implementation class HomePageAdminServlet
+ * Servlet implementation class ManageCategoryServlet
  */
-@WebServlet("/admin")
-public class HomePageAdminServlet extends HttpServlet {
-	private CustomerService cusService;
+@WebServlet("/admin/category")
+public class ManageCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private  CategoryService catService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomePageAdminServlet() {
-    	cusService = new CustomerServiceImpl();
-        
+    public ManageCategoryServlet() {
+        super();
+        catService = new CategoryServiceImpl();
         // TODO Auto-generated constructor stub
     }
 
@@ -34,9 +34,9 @@ public class HomePageAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Customer> customers = cusService.getAllCustomers();
-		request.setAttribute("customers", customers);
-		request.getRequestDispatcher("/admin/customer.jsp").forward(request, response);
+		List<Category> categories = catService.getAllCategories();
+		request.setAttribute("categories", categories);
+		request.getRequestDispatcher("/admin/category.jsp").forward(request, response);
 	}
 
 	/**

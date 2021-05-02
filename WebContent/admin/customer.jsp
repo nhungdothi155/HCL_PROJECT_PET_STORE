@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!doctype html>
 <html lang="en">
   <head>
   	<title>Sidebar 02</title>
@@ -11,9 +10,9 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<%=request.getServletContext().getContextPath() %>/admin/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="<%=request.getServletContext().getContextPath() %>/admin/css/style.css">
 	<style>
 		body {
 			color: #566787;
@@ -194,99 +193,47 @@
 							</div>
 						</div>
 					</div>
-						<c:if  test="${accessories !=null}">
-				
-					<table class="table table-striped table-hover table-bordered">
+					<table  class="table table-striped table-hover table-bordered" id="table_box_native">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Brand<i class="fa fa-sort"></i></th>
-								<th>Material</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Product State</th>
-								<th>Actions</th>
+								<th>Firstname<i class="fa fa-sort"></i></th>
+								<th>Last name</th>
+								<th>Dob<i class="fa fa-sort"></i></th>
+								<th>Address</th>
+								<th>Phone<i class="fa fa-sort"></i></th>
+								<th>Date Sign Up</th>
+								
 							</tr>
 						</thead>
-						<tbody id="myTable">
-						  <c:forEach items="${accessories}" var="p">
+						<tbody id="myTable" >
+							<c:forEach items= "${customers }" var= "cus">
 							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.brand }</td>
-								<td>${p.material }</td>
-								<td>${p.origin }</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.productState }</td>
-								<td>
+								<td>${cus.id }</td>
+								<td>${cus.firstname }</td>
+								<td>${cus.lastname }</td>
+								<td>${cus.dob }</td>
+								<td>${cus.address }</td>
+								<td>${cus.phone }</td>
+								<td>Bbab</td>
+								<%-- <td>
 									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
 									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 								</td>
-								</c:forEach>
+								--%>
 							</tr>      
+							</c:forEach>
 						</tbody>
 					</table>
-				</c:if>
-				<c:if  test="${pets!=null}">
-				
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Weight</th>
-								<th>Age</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody id="myTable">
-						  <c:forEach items="${pets}" var="p">
-							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.origin}</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.weight }</td>
-								<td>${p.age }</td>
-								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-								</td>
-								</c:forEach>
-							</tr>      
-						</tbody>
-					</table>
-				</c:if>
-					<div class="clearfix">
-						<div class="hint-text">Showing <b>10</b> out of <b>25</b> entries</div>
-						<ul class="pagination">
-							<li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item active"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
-						</ul>
+					<div class="clearfix"  id="index_native">
+						
 					</div>
 				</div>
 			</div>        
 		</div>     
 	</div>
-<script>
+	<script>
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();
 		});
@@ -305,5 +252,6 @@
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/popper.js"></script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/bootstrap.min.js"></script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/main.js"></script>
+
   </body>
 </html>

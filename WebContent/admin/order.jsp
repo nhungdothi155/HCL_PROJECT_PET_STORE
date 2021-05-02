@@ -194,35 +194,33 @@
 							</div>
 						</div>
 					</div>
-						<c:if  test="${accessories !=null}">
-				
 					<table class="table table-striped table-hover table-bordered">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Brand<i class="fa fa-sort"></i></th>
-								<th>Material</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Product State</th>
+								<th>Total Price<i class="fa fa-sort"></i></th>
+								<th>Customer Name</th>
+								<th>Customer Country<i class="fa fa-sort"></i></th>
+								<th>Customer City</th>
+								<th>Customer Phone<i class="fa fa-sort"></i></th>
+								<th>Customer Email</th>
+								<th>Customer zip code</th>
+								<th>Customer Note</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody id="myTable">
-						  <c:forEach items="${accessories}" var="p">
+						  <c:forEach items="${orders}" var="order">
 							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.brand }</td>
-								<td>${p.material }</td>
-								<td>${p.origin }</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.productState }</td>
+								<td>${order.orderId }</td>
+								<td>${order.totalPrice }</td>
+								<td>${order.customerFirstname} ${order.customerLastname}</td>
+								<td>${order.customerCity}</td>
+								<td>${order.customerAddress }</td>
+								<td>${order.customerPhone }</td>
+								<td>${order.customerEmail }</td>
+								<td>${order.zipCode }</td>
+								<td>${order.note }</td>
 								<td>
 									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -232,44 +230,6 @@
 							</tr>      
 						</tbody>
 					</table>
-				</c:if>
-				<c:if  test="${pets!=null}">
-				
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Category Name<i class="fa fa-sort"></i></th>
-								<th>Product Name</th>
-								<th>Origin<i class="fa fa-sort"></i></th>
-								<th>Price</th>
-								<th>Product Numbers</th>
-								<th>Weight</th>
-								<th>Age</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody id="myTable">
-						  <c:forEach items="${pets}" var="p">
-							<tr>
-								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
-								<td>${p.productName}</td>
-								<td>${p.origin}</td>
-								<td>${p.price }</td>
-								<td>${p.productNumbers }</td>
-								<td>${p.weight }</td>
-								<td>${p.age }</td>
-								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-								</td>
-								</c:forEach>
-							</tr>      
-						</tbody>
-					</table>
-				</c:if>
 					<div class="clearfix">
 						<div class="hint-text">Showing <b>10</b> out of <b>25</b> entries</div>
 						<ul class="pagination">

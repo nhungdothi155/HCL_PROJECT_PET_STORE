@@ -40,7 +40,15 @@
 	            </ul>
 	          </li>
 	          <li>
-	              <a href="#">Product</a>
+	               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#">Pets</a>
+                </li>
+                <li>
+                    <a href="#">Accessories</a>
+                </li>
+	            </ul>
 	          </li>
 	          <li>
               <a href="#">Order</a>
