@@ -89,7 +89,7 @@ public class SuccessOrderServlet extends HttpServlet {
 //		// create new request
 //		request.setAttribute("products", products);
 
-		response.sendRedirect(request.getServletContext().getContextPath() + "/customer");;
+		response.sendRedirect(request.getServletContext().getContextPath() + "/home");;
 		}
 		else {
 			response.sendRedirect(request.getServletContext().getContextPath() + "/login");

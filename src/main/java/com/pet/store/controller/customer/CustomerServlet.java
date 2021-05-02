@@ -20,7 +20,7 @@ import com.pet.store.service.impl.ProductServiceImpl;
 /**
  * Servlet implementation class HomePageCustomerServlet
  */
-@WebServlet("/customer")
+@WebServlet("/home")
 public class CustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -76,7 +76,7 @@ public class CustomerServlet extends HttpServlet {
 		request.setAttribute("products", products);
 
 		// forward to this page
-		RequestDispatcher rq = request.getRequestDispatcher("homepage.jsp");
+		RequestDispatcher rq = request.getRequestDispatcher("customer/homepage.jsp");
 		rq.forward(request, response);
 
 	}

@@ -1,6 +1,8 @@
 package com.pet.store.service.impl;
 
 
+import java.util.List;
+
 import com.pet.store.dao.implement.CartDAOImpl;
 import com.pet.store.dao.implement.CartItemDAOImpl;
 import com.pet.store.dao.implement.CustomerDAOImpl;
@@ -98,6 +100,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getCustomerById(long id) {
 	    return cusDAO.getElementById(id);
+	}
+
+	@Override
+	public List<Customer> getAllCustomers() {
+		return cusDAO.listAll();
+		// TODO Auto-generated method stub
+		
 	}
 
 }

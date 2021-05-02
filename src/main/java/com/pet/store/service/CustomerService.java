@@ -1,10 +1,14 @@
+
 package com.pet.store.service;
+
+import java.util.List;
 
 import com.pet.store.entity.Cart;
 import com.pet.store.entity.Customer;
 import com.pet.store.entity.Order;
 
 public interface CustomerService {
+	public List<Customer> getAllCustomers();
 	public void signUp(Customer cus);
 	public Customer signIn(String username, String password);
 	public void addCartForCustomer(long cusId);
