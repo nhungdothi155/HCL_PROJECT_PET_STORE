@@ -13,9 +13,10 @@
 		<link rel="stylesheet" href="<%=request.getServletContext().getContextPath() %>/admin/css/style.css">
   </head>
   <body>
+  <% int[] months = (int[]) request.getAttribute("months"); %>
 		
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
+				<nav id="sidebar">
 				<div class="custom-menu">
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
 	          <i class="fa fa-bars"></i>
@@ -29,13 +30,13 @@
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Report</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="reportOrder">Order Monthly</a>
+                    <a href="<%=request.getContextPath() %>/reportOrder">Order Monthly</a>
                 </li>
                 <li>
-                    <a href="reportProduct">Selling Product</a>
+                    <a href="<%=request.getContextPath() %>/reportProduct">Selling Product</a>
                 </li>
                 <li>
-                    <a href="reportIncome">Income Monthly</a>
+                    <a href="<%=request.getContextPath() %>/reportIncome">Income Monthly</a>
                 </li>
 	            </ul>
 	          </li>
@@ -43,35 +44,76 @@
 	               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="admin/pets">Pets</a>
+                    <a href="<%=request.getContextPath() %>/admin/pets">Pets</a>
                 </li>
                 <li>
-                    <a href="admin/accessories">Accessories</a>
+                    <a href="<%=request.getContextPath() %>/admin/accessories">Accessories</a>
                 </li>
 	            </ul>
 	          </li>
 	          <li>
-              <a href="admin/order">Orders</a>
+              <a href="<%=request.getContextPath() %>/admin/order">Orders</a>
 	          </li>
 	          <li>
-              <a href="admin/category">Categories</a>
+              <a href="<%=request.getContextPath() %>/admin/category">Categories</a>
 	          </li>
 			  <li>
-				<a href="admin/customer">Customers</a>
+				<a href="<%=request.getContextPath() %>/admin/customer">Customers</a>
 				</li>
 	        </ul>
 
 	      </div>
     	</nav>
-
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 		</div>
+		
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+window.onload = function () {
 
+var options = {
+	animationEnabled: true,  
+	title:{
+		text: "Yearly Order - 2021"
+	},
+	axisX: {
+		valueFormatString: "MMM"
+	},
+	axisY: {
+		title: "Number of order",
+		prefix: ""
+	},
+	data: [{
+		yValueFormatString: "$#,###",
+		xValueFormatString: "MMMM",
+		type: "spline",
+		dataPoints: [
+			{ x: new Date(2017, 0), y: <%=months[0]%> },
+			{ x: new Date(2017, 1), y: <%=months[1]%> },
+			{ x: new Date(2017, 2), y: <%=months[2]%> },
+			{ x: new Date(2017, 3), y: <%=months[3]%> },
+			{ x: new Date(2017, 4), y: <%=months[4]%> },
+			{ x: new Date(2017, 5), y: <%=months[5]%> },
+			{ x: new Date(2017, 6), y: <%=months[6]%> },
+			{ x: new Date(2017, 7), y: <%=months[7]%> },
+			{ x: new Date(2017, 8), y: <%=months[8]%> },
+			{ x: new Date(2017, 9), y: <%=months[9]%> },
+			{ x: new Date(2017, 10), y: <%=months[10]%> },
+			{ x: new Date(2017, 11), y: <%=months[11]%> }
+		]
+	}]
+};
+$("#chartContainer").CanvasJSChart(options);
+
+}
+</script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/jquery.min.js"></script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/popper.js"></script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/bootstrap.min.js"></script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/main.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
   </body>
 </html>

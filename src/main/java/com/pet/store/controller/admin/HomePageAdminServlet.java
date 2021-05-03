@@ -16,7 +16,7 @@ import com.pet.store.service.impl.CustomerServiceImpl;
 /**
  * Servlet implementation class HomePageAdminServlet
  */
-@WebServlet("/admin")
+@WebServlet("/admin/customer")
 public class HomePageAdminServlet extends HttpServlet {
 	private CustomerService cusService;
 	private static final long serialVersionUID = 1L;

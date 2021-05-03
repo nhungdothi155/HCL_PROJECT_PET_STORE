@@ -17,7 +17,7 @@ import com.pet.store.service.impl.ProductServiceImpl;
 /**
  * Servlet implementation class ManageProductServlet
  */
-@WebServlet(urlPatterns = {"/admin/product/pets", "/admin/product/accessories"})
+@WebServlet(urlPatterns = {"/admin/pets", "/admin/accessories"})
 public class ManageProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProductService productService;

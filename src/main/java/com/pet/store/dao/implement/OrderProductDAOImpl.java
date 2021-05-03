@@ -10,7 +10,6 @@ import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.dao.OrderProductDAO;
 import com.pet.store.entity.OrderProduct;
-import com.pet.store.entity.Product;
 
 public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements OrderProductDAO {
 	private static SessionFactory sessionFactory;
@@ -29,7 +28,7 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	@Override
 	public List<OrderProduct> listAll() {
 
-		Query<OrderProduct> query = session.createSQLQuery("select * from hcl_project_pet_store.order_product");
+		Query<OrderProduct> query = session.createQuery("select o from OrderProduct o",OrderProduct.class);
 		List<OrderProduct> orderProducts = query.getResultList();
 		return orderProducts;
 	}
@@ -87,4 +86,5 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 
 	}
 
+	
 }

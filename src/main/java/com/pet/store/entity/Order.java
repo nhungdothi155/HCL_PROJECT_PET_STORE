@@ -2,9 +2,9 @@ package com.pet.store.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 @Table(name="\"order\"")
 public class Order implements Serializable {
@@ -61,6 +63,14 @@ public class Order implements Serializable {
 	// note of order
 	@Column(name="note")
 	private String note;
+	//time create
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	@OneToMany(mappedBy="order")
 	private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
@@ -198,6 +208,18 @@ public class Order implements Serializable {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+	public Date getDateModified() {
+		return dateModified;
+	}
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
 	}
 
 	

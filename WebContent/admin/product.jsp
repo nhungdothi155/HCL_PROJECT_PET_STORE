@@ -151,27 +151,35 @@
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Report</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Order Monthly</a>
+                    <a href="<%=request.getContextPath() %>/reportOrder">Order Monthly</a>
                 </li>
                 <li>
-                    <a href="#">Product Monthly</a>
+                    <a href="<%=request.getContextPath() %>/reportProduct">Selling Product</a>
                 </li>
                 <li>
-                    <a href="#">Income Monthly</a>
+                    <a href="<%=request.getContextPath() %>/reportIncome">Income Monthly</a>
                 </li>
 	            </ul>
 	          </li>
 	          <li>
-	              <a href="#">Product</a>
+	               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="<%=request.getContextPath() %>/admin/pets">Pets</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath() %>/admin/accessories">Accessories</a>
+                </li>
+	            </ul>
 	          </li>
 	          <li>
-              <a href="#">Order</a>
+              <a href="<%=request.getContextPath() %>/admin/order">Orders</a>
 	          </li>
 	          <li>
-              <a href="#">Category</a>
+              <a href="<%=request.getContextPath() %>/admin/category">Categories</a>
 	          </li>
 			  <li>
-				<a href="#">User</a>
+				<a href="<%=request.getContextPath() %>/admin/customer">Customers</a>
 				</li>
 	        </ul>
 
