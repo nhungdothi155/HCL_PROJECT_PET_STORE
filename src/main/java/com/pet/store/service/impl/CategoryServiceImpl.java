@@ -40,5 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
 	public void deleteCategory(int id) {
 		catDAO.delete(id);
 	}
+	@Override
+	public Category getCategoryById(long id) {
+		// TODO Auto-generated method stub
+		return catDAO.getElementById(id);
+	}
 
 }

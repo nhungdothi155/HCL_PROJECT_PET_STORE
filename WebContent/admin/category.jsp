@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
-  	<title>Sidebar 02</title>
+  	<title>Administrator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -145,7 +145,7 @@
 	        </button>
         </div>
 				<div class="p-4 pt-5">
-		  		<h1><a href="index.html" class="logo">Splash</a></h1>
+		  		<h1><a href="index.html" class="logo">Administrator</a></h1>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Report</a>

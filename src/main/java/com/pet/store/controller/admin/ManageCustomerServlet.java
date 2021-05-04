@@ -17,14 +17,14 @@ import com.pet.store.service.impl.CustomerServiceImpl;
  * Servlet implementation class HomePageAdminServlet
  */
 @WebServlet("/admin/customer")
-public class HomePageAdminServlet extends HttpServlet {
+public class ManageCustomerServlet extends HttpServlet {
 	private CustomerService cusService;
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomePageAdminServlet() {
+    public ManageCustomerServlet() {
     	cusService = new CustomerServiceImpl();
         
         // TODO Auto-generated constructor stub

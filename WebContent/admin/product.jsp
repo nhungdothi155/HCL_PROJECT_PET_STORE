@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
   <head>
-  	<title>Sidebar 02</title>
+  	<title>Administrator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -145,7 +146,7 @@
 	        </button>
         </div>
 				<div class="p-4 pt-5">
-		  		<h1><a href="index.html" class="logo">Splash</a></h1>
+		  		<h1><a href="index.html" class="logo">Administrator</a></h1>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Report</a>
@@ -194,10 +195,19 @@
 					<div class="table-title">
 						<div class="row">
 							<div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+							<c:set var= "url" value="${url}"/>
+							<c:if test="${fn:contains(url, 'pets')}">
+							<a href="<%=request.getContextPath() %>/admin/pets/add" title="Add" >Add Product</a>
+							</c:if>
+							<c:if test="${fn:contains(url, 'accessories')}">
+							<a href="<%=request.getContextPath() %>/admin/accessories/add" title="Add" >Add Product</a>
+							</c:if>
+							
 							<div class="col-sm-4">
 								<div class="search-box">
 									<i class="material-icons">&#xE8B6;</i>
 									<input type="text" id="search" class="form-control" placeholder="Search&hellip;">
+									
 								</div>
 							</div>
 						</div>
@@ -207,7 +217,7 @@
 					<table class="table table-striped table-hover table-bordered">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th>#  <c:out value = "${url}"/></th>
 								<th>Category Name<i class="fa fa-sort"></i></th>
 								<th>Product Name</th>
 								<th>Brand<i class="fa fa-sort"></i></th>
@@ -232,7 +242,7 @@
 								<td>${p.productNumbers }</td>
 								<td>${p.productState }</td>
 								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+									
 									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
 									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 								</td>
