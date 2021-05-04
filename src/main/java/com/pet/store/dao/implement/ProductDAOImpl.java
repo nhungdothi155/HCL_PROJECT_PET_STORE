@@ -51,6 +51,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 
 	@Override
 	public int update(Product t) {
+		
 		session.beginTransaction();
 		session.merge(t);
 		session.getTransaction().commit();

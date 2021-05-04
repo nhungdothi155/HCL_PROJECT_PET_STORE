@@ -243,8 +243,8 @@
 								<td>${p.productState }</td>
 								<td>
 									
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+									<a href="<%=request.getContextPath()%>/admin/${p.category.categoryName.toLowerCase() }/edit?id=${p.productId}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+									<a href="<%=request.getContextPath()%>/admin/${p.category.categoryName.toLowerCase() }/delete?id=${p.productId}" class="delete" title="Delete" data-toggle="tooltip"><i onclick="myFunction()" class="material-icons">&#xE872;</i></a>
 								</td>
 								</c:forEach>
 							</tr>      
@@ -271,7 +271,7 @@
 						  <c:forEach items="${pets}" var="p">
 							<tr>
 								<td>${p.productId }</td>
-								<td>${p.category.categoryName }</td>
+								<td>${p.category.categoryName}</td>
 								<td>${p.productName}</td>
 								<td>${p.origin}</td>
 								<td>${p.price }</td>
@@ -279,9 +279,8 @@
 								<td>${p.weight }</td>
 								<td>${p.age }</td>
 								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+									<a href="<%=request.getContextPath()%>/admin/${p.category.categoryName.toLowerCase() }/edit?id=${p.productId}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+									<a href="<%=request.getContextPath()%>/admin/${p.category.categoryName.toLowerCase() }/delete?id=${p.productId}" class="delete" title="Delete" data-toggle="tooltip"><i onclick="myFunction()" class="material-icons">&#xE872;</i></a>
 								</td>
 								</c:forEach>
 							</tr>      
@@ -305,6 +304,7 @@
 		</div>     
 	</div>
 <script>
+function myFunction(){ confirm("Do you want to delete");}
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();
 		});

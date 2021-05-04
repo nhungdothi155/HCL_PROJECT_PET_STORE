@@ -20,24 +20,25 @@
 <%
 CategoryService c = new CategoryServiceImpl();
 List<Category> cats = c.getAllCategories();
-request.setAttribute("cats1", cats.stream().filter(k -> k.getCategoryName().equals("PET")).collect(Collectors.toList()));
+request.setAttribute("cats1", cats.stream().filter(k -> k.getCategoryName().equals("PETS")).collect(Collectors.toList()));
 request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equals("ACCESSORIES")).collect(Collectors.toList()));
 
 
 %>
-<form class="form-horizontal"  method="post"  action="<%=request.getContextPath()%>/admin/products/insert" enctype="multipart/form-data">
+<form class="form-horizontal"  method="get"  action="<%=request.getContextPath()%>/admin/products/${request}" enctype="multipart/form-data">
 <fieldset>
 
 <!-- Form Name -->
 <legend>PRODUCTS</legend>
-
-<input type="hidden" name="pId" >
-
+<c:if test="${pId!=null }" >
+<input type="hidden" name="pId" value="${pId}" >
+</c:if>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>  
   <div class="col-md-4">
-  <input id="product_name" name="pName" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text">
+  
+  <input id="product_name" value="${pName}" name="pName" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -46,7 +47,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION FR</label>  
   <div class="col-md-4">
-  <input id="product_name_fr" name="pDes" placeholder="PRODUCT DESCRIPTION FR" class="form-control input-md" required="" type="text">
+  <input id="product_name_fr" value="${pDes}" name="pDes" placeholder="PRODUCT DESCRIPTION FR" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -77,7 +78,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="available_quantity">PRODUCT BRAND</label>  
   <div class="col-md-4">
-  <input id="brand" name="pBrand" placeholder="PRODUCT BRAND" class="form-control input-md" required="" type="text">
+  <input id="brand" name="pBrand" value="${pBrand}" placeholder="PRODUCT BRAND" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -88,7 +89,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="available_quantity">PRODUCT MATERIAL</label>  
   <div class="col-md-4">
-  <input id="material" name="pMaterial" placeholder="PRODUCT MATERIAL" class="form-control input-md" required="" type="text">
+  <input id="material" name="pMaterial" value="${pMaterial}" placeholder="PRODUCT MATERIAL" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -97,7 +98,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="available_quantity">PRODUCT ORIGIN</label>  
   <div class="col-md-4">
-  <input id="origin" name="pOrigin" placeholder="PRODUCT ORIGIN" class="form-control input-md" required="" type="text">
+  <input id="origin" name="pOrigin" value="${pOrigin}" placeholder="PRODUCT ORIGIN" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -105,7 +106,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="available_quantity">PRODUCT PRICE</label>  
   <div class="col-md-4">
-  <input id="" name="pPrice" placeholder="PRODUCT PRICE" class="form-control input-md" required="" type="text">
+  <input id="" name="pPrice" value="${pPrice}" placeholder="PRODUCT PRICE" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -113,7 +114,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="available_quantity">AVAILABLE QUANTITY</label>  
   <div class="col-md-4">
-  <input id="" name="pNumbers" placeholder="AVAILABLE QUANTITY" class="form-control input-md" required="" type="text">
+  <input id="" name="pNumbers" value="${pNumbers}" placeholder="AVAILABLE QUANTITY" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -124,7 +125,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>  
   <div class="col-md-4">
-  <input id="product_weight" name="pWeight" placeholder="PRODUCT WEIGHT" class="form-control input-md" required="" type="text">
+  <input id="product_weight" value="${pWeight}" name="pWeight" placeholder="PRODUCT WEIGHT" class="form-control input-md" required="" type="text">
     
   </div>
 </div>
@@ -135,7 +136,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_description">PRODUCT AGE</label>
   <div class="col-md-4">                     
-  <input id="product_weight" name="pAge" placeholder="PRODUCT AGE" class="form-control input-md" required="" type="text">
+  <input id="product_weight" value="${pAge}" name="pAge" placeholder="PRODUCT AGE" class="form-control input-md" required="" type="text">
   </div>
 </div>
 </c:if>
@@ -145,7 +146,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_name_fr">PRODUCT STATE</label>
   <div class="col-md-4">                     
-<select class ="form-control inputstl" id="categoryId" name="pState">
+<select class ="form-control inputstl" id="categoryId" name="pState" >
  	<option value="NEW">NEW</option>
  	<option value="USED">USED</option>
  </select>
@@ -153,10 +154,11 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
   </div>
 </div>
 </c:if>
-
-    
+<!-- test if insert or update -->
+<c:if test="${fn:contains(url, 'add')}">    
  <!-- File Button --> 
 <div class="form-group">
+  <div style="color:red">You should consider when upload image , because you can not fix it</div>
   <label class="col-md-4 control-label" for="filebutton">main_image</label>
   <div class="col-md-4">
     <input id="filebutton1"  onchange="onChange(this.value)"  name="img1" class="input-file" type="file" required>
@@ -164,6 +166,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 </div>
 <!-- File Button --> 
 <div class="form-group">
+<div style="color:red">You should consider when upload image , because you can not fix it</div>
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 1</label>
   <div class="col-md-4">
     <input id="filebutton2"  onchange="onChange(this.value)"  name="img2" class="input-file" type="file" required>
@@ -171,6 +174,7 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 </div>
 <!-- File Button --> 
 <div class="form-group">
+<div style="color:red">You should consider when upload image , because you can not fix it</div>
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 2</label>
   <div class="col-md-4">
     <input id="filebutton3"  onchange="onChange(this.value)"  name="img3" class="input-file" onchange="onChange(this.value)" type="file" required>
@@ -178,17 +182,18 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 </div>
 <!-- File Button --> 
 <div class="form-group">
+<div style="color:red" >You should consider when upload image , because you can not fix it</div>
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 3</label>
   <div class="col-md-4">
     <input id="filebutton4"  onchange="onChange(this.value)"  name="img4" class="input-file" onchange="onChange(this.value)"  type="file" required>
   </div>
 </div>
-
+</c:if>
 <!-- Button -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
+  <label class="col-md-4 control-label" for="singlebutton">Save The Information</label>
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
   </div>
   </div>
 
