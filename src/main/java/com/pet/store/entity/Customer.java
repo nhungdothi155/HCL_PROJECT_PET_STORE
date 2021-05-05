@@ -48,6 +48,13 @@ public class Customer implements Serializable{
 	//password
 	@Column(name="password")
 	private String password;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	@OneToMany(mappedBy="customer")
 	private List<Cart> carts= new ArrayList<Cart>();
@@ -144,6 +151,27 @@ public class Customer implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+	
 	
 	
 }

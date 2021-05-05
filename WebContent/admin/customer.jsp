@@ -223,7 +223,7 @@
 								<td>${cus.dob }</td>
 								<td>${cus.address }</td>
 								<td>${cus.phone }</td>
-								<td>Bbab</td>
+								<td>${cus.dateCreated}</td>
 								<%-- <td>
 									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
@@ -92,6 +93,7 @@ public class ManageProductServlet extends HttpServlet {
 		}
 		// add form
 		else if (action.endsWith("add")) {
+			request.setAttribute("method", "post");
 			request.setAttribute("request", "insert");
 			// for pet
 			if (action.contains("pets")) {
@@ -113,6 +115,7 @@ public class ManageProductServlet extends HttpServlet {
 		}
 		// edit form
 		else if (action.endsWith("edit")) {
+			request.setAttribute("method", "get");
 			request.setAttribute("request", "update");
 			int id = Integer.parseInt(request.getParameter("id"));
 			Product product = productService.getElementById(id);
@@ -261,13 +264,14 @@ public class ManageProductServlet extends HttpServlet {
 						break;
 					} else {
 						Path path = Paths.get(filename);
-						String storePath = servletContext.getRealPath("/uploads");
+						String storePath = "C:\\Users\\MyPC\\eclipse-workspace\\JAVA_PROJECT\\HCL_PROJECT_PET_STORE\\WebContent\\uploads";
 						File uploadFile = new File(storePath + "/" + path.getFileName());
 						File newFile = createFileWithCurDate(uploadFile);
 						item.write(newFile);
-
 						System.out.println(newFile.getAbsolutePath());
-						fileNames.add(newFile.getAbsolutePath());
+					    
+
+						fileNames.add(newFile.getName());
 					}
 				}
 			}
@@ -352,13 +356,8 @@ public class ManageProductServlet extends HttpServlet {
 	}
 
 	public String generateSuffix() {
-		// Get the current time
-		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-		// Convert to string
-		String formatDate = format.format(new Date());
-		// Randomly generate file number
-		int random = new Random().nextInt(10000);
-		return new StringBuffer().append(formatDate).append(random).toString();
+		UUID uuid = UUID.randomUUID();
+		return new StringBuffer().append(uuid).toString();
 	}
 
 }

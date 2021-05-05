@@ -210,7 +210,7 @@
 								<th>Sub Cateogries</th>
 								<th>Date Created<i class="fa fa-sort"></i></th>
 								<th>Date Modified</th>
-								<th>Actions</th>
+								
 							</tr>
 						</thead>
 						<tbody id="myTable">
@@ -221,12 +221,6 @@
 								<td>${cat.subCategories} </td>
 								<td>${cat.dateCreated}</td>
 								<td>${cat.dateModified }</td>
-								
-								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-								</td>
 								</c:forEach>
 							</tr>      
 						</tbody>

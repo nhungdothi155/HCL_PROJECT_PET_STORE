@@ -25,14 +25,15 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 
 
 %>
-<form class="form-horizontal"  method="get"  action="<%=request.getContextPath()%>/admin/products/${request}" enctype="multipart/form-data">
+
+<form class="form-horizontal"  method="${method }"  action="<%=request.getContextPath()%>/admin/products/${request}"  enctype="multipart/form-data">
 <fieldset>
 
 <!-- Form Name -->
 <legend>PRODUCTS</legend>
-<c:if test="${pId!=null }" >
-<input type="hidden" name="pId" value="${pId}" >
-</c:if>
+
+<input name="pId" value="${pId}" type="hidden" >
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>  
@@ -47,8 +48,8 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <div class="form-group">
   <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION FR</label>  
   <div class="col-md-4">
-  <input id="product_name_fr" value="${pDes}" name="pDes" placeholder="PRODUCT DESCRIPTION FR" class="form-control input-md" required="" type="text">
-    
+  
+    <textarea rows="5" cols="9" =laceholder="PRODUCT DESCRIPTION" name="pDes" class="form-control input-md" required="">${pDes}</textarea>
   </div>
 </div>
 
