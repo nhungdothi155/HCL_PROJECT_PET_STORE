@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.pagination{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+.pagination a{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    background: darkblue;
+    color: #fff;
+    line-height: 60px;
+    text-decoration: none;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+.pagination a:hover,
+.active{
+    color: red !important;
+}
