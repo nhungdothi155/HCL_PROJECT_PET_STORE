@@ -11,15 +11,15 @@
   <div class="container">
     <div class="title">Login</div>
     <div class="content">
-      <form action="#">
+      <form action="<%=request.getServletContext().getContextPath() %>/loginSuccess" method=POST>
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
+            <input type="text" name="username" placeholder="Enter your name" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
+            <input type="text" name="password" placeholder="Enter your username" required>
           </div>
         <div class="button">
           <input type="submit" value="Login">

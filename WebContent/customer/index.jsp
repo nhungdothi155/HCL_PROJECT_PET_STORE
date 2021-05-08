@@ -23,7 +23,7 @@
     <div class="flex">
     <c:forEach items ="${dogs }" var ="dog" >
       <div >
-        <img  style="object-fit: cover;" src="<%=request.getServletContext().getContextPath() %>/uploads/${fn:split(dog.photos,',')[0]}"  >
+       <a href="<%=request.getServletContext().getContextPath()%>/product?id=${dog.productId}"> <img  style="object-fit: cover;"  src="<%=request.getServletContext().getContextPath() %>/uploads/${fn:split(dog.photos,',')[0]}"  ></a>
        
         <p class="category">${dog.category.categoryName }</p>
         <h4>${dog.productName }</h4>

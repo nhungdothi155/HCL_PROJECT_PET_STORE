@@ -32,15 +32,29 @@ public class ProductServiceImpl implements ProductService  {
 	}
 
 	@Override
-	public List<Product> searchProductByNameOrType(String search) {
+	public List<Product> searchProductByNameOrType(String search, int offset, int limit) {
 		// TODO Auto-generated method stub
-		return productDAO.searchProductByWords(search);
+		return productDAO.searchProductByWords(search,offset, limit);
 	}
+	@Override
+	public List<Product> searchProductByNameOrType(String search, int limit) {
+		// TODO Auto-generated method stub
+		 return productDAO.searchProductByWords(search, limit);
+	}
+	@Override
+	public List<Product> searchProductByRequire(String search,String require,int offset, int limit) {
+		// TODO Auto-generated method stub
+		return productDAO.searchProductByRequire(search, require,offset,  limit);
+	}
+	@Override
 	public List<Product> searchProductByRequire(String search,String require) {
 		// TODO Auto-generated method stub
 		return productDAO.searchProductByRequire(search, require);
 	}
-
+	@Override
+	public List<Product> searchProductByNameOrType(String search) {
+		// TODO Auto-generated method stub
+		 return productDAO.searchProductByWords(search);	}
 	@Override
 	public List<Product> findAllProduct() {
 		// TODO Auto-generated method stub
@@ -50,5 +64,7 @@ public class ProductServiceImpl implements ProductService  {
 	public Product getElementById(int id) {
 		return productDAO.getElementById(id);
 	}
+
+	
 
 }

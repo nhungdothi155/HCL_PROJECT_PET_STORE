@@ -54,7 +54,7 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	public int update(OrderProduct t) {
 		if (session.beginTransaction() == null) {
 			session.beginTransaction();
-			session.merge(t);
+			session.update(t);
 			session.getTransaction().commit();
 		}
 		return 1;

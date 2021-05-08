@@ -53,7 +53,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 	public int update(Product t) {
 		
 		session.beginTransaction();
-		session.merge(t);
+		session.update(t);
 		session.getTransaction().commit();
 
 		return 1;
@@ -70,40 +70,105 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 
 	}
 
-	public List<Product> searchProductByWords(String word) {
+	public List<Product> searchProductByWords(String word, int offset,int limit) {
 
 		Query<Product> query = session.createQuery(
 				"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') "
 				+ "or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
 				+ "or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')",
 				Product.class);
-		query.setParameter("name", word);
+		query.setParameter("name", word)
+		.setFirstResult(offset).setMaxResults(limit);
 
 		List<Product> products = query.getResultList();
 		return products;
 
 	}
+	public List<Product> searchProductByWords(String word,int limit) {
 
+		Query<Product> query = session.createQuery(
+				"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') "
+				+ "or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+				+ "or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')",
+				Product.class);
+		query.setParameter("name", word).setMaxResults(limit);
+
+		List<Product> products = query.getResultList();
+		return products;
+
+	}
 	public List<Product> searchProductByRequire(String search, String require) {
 		Query<Product> query = null;
+		System.out.println(search);
+		System.out.println(require);
 		switch (require) {
 		case "feature":
 			query = session.createQuery(
 					"select distinct p from Product p "
-					+ "inner join OrderProduct o on p.productId = o.product.productId"
+					+ " inner join OrderProduct o on p.productId = o.product.productId"
 					+ " where p.productName LIKE CONCAT('%',:name,'%') "
-					+ "or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
-					+ "or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
-					+ " ORDER BY p.dateCreated DESC",
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ " or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
+					+ " ",
 					Product.class);
 			break;
 		case "lowprice":
 			query = session.createQuery(
 					"select p from Product p "
 					+ "where p.productName LIKE CONCAT('%',:name,'%') "
-					+ "or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
-					+ "or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
-					+ "ORDER BY p.price ASC",
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ "  or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
+					+ " ORDER BY p.price ASC",
+					Product.class);
+			break;
+		case "highprice":
+			query = session.createQuery(
+					"select p from Product p "
+					+ " where p.productName LIKE CONCAT('%',:name,'%') "
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ " or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
+					+ " ORDER BY p.price DESC",
+					Product.class);
+			break;
+		case "newest":
+			query = session.createQuery(
+					"select p from Product p"
+					+ " where p.productName LIKE CONCAT('%',:name,'%') "
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ " or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
+					+ " ORDER BY p.dateCreated DESC",
+					Product.class);
+			break;
+		default:
+			break;
+
+		}
+		query.setParameter("name", search);
+
+		List<Product> products = query.getResultList();
+		return products;
+
+	}
+
+	public List<Product> searchProductByRequire(String search, String require,int offset, int limit) {
+		Query<Product> query = null;
+		switch (require) {
+		case "feature":
+			query = session.createQuery(
+					"select distinct p from Product p "
+					+ " inner join OrderProduct o on p.productId = o.product.productId"
+					+ " where lower(p.productName) LIKE CONCAT('%',:name,'%') "
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ " or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')",
+					Product.class);
+			break;
+		case "lowprice":
+			query = session.createQuery(
+					"select p from Product p "
+					+ " where p.productName LIKE CONCAT('%',:name,'%') "
+					+ " or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+					+ " or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')"
+					+ " ORDER BY p.price ASC",
 					Product.class);
 			break;
 		case "highprice":
@@ -128,7 +193,7 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 			break;
 
 		}
-		query.setParameter("name", search);
+		query.setParameter("name", search).setFirstResult(offset).setMaxResults(limit);
 
 		List<Product> products = query.getResultList();
 		return products;
@@ -166,5 +231,19 @@ public class ProductDAOImpl extends GenericDAO<Product> implements ProductDAO {
 		Product product = session.find(Product.class, id);
 		return product;
 	}
+
+	@Override
+	public List<Product> searchProductByWords(String word) {
+		Query<Product> query = session.createQuery(
+				"select p from Product p where p.productName LIKE CONCAT('%',:name,'%') "
+				+ "or lower(p.category.categoryName) LIKE CONCAT('%',:name,'%')"
+				+ "or lower(p.category.subCategories) LIKE CONCAT('%',:name,'%')",
+				Product.class);
+		query.setParameter("name", word);
+
+		List<Product> products = query.getResultList();
+		return products;
+	}
+
 
 }

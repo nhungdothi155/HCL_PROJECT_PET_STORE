@@ -29,8 +29,14 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <form class="form-horizontal"  method="${method }"  action="<%=request.getContextPath()%>/admin/products/${request}"  enctype="multipart/form-data">
 <fieldset>
 
-<!-- Form Name -->
-<legend>PRODUCTS</legend>
+<!-- Form Pets -->
+<c:if test="${fn:contains(url, 'pets')}">
+<legend>ADD PETS</legend>
+</c:if>
+<!-- Form Accessories -->
+<c:if test="${fn:contains(url, 'accessories')}">
+<legend>ADD ACCCESSORIES</legend>
+</c:if>
 
 <input name="pId" value="${pId}" type="hidden" >
 
@@ -159,33 +165,36 @@ request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equa
 <c:if test="${fn:contains(url, 'add')}">    
  <!-- File Button --> 
 <div class="form-group">
-  <div style="color:red">You should consider when upload image , because you can not fix it</div>
+  
   <label class="col-md-4 control-label" for="filebutton">main_image</label>
   <div class="col-md-4">
+  <div style="color:red">*You should consider when upload image , because you can not fix it</div>
     <input id="filebutton1"  onchange="onChange(this.value)"  name="img1" class="input-file" type="file" required>
   </div>
 </div>
 <!-- File Button --> 
 <div class="form-group">
-<div style="color:red">You should consider when upload image , because you can not fix it</div>
+
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 1</label>
   <div class="col-md-4">
+  <div style="color:red">*You should consider when upload image , because you can not fix it</div>
     <input id="filebutton2"  onchange="onChange(this.value)"  name="img2" class="input-file" type="file" required>
   </div>
 </div>
 <!-- File Button --> 
 <div class="form-group">
-<div style="color:red">You should consider when upload image , because you can not fix it</div>
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 2</label>
   <div class="col-md-4">
+  <div style="color:red">*You should consider when upload image , because you can not fix it</div>
     <input id="filebutton3"  onchange="onChange(this.value)"  name="img3" class="input-file" onchange="onChange(this.value)" type="file" required>
   </div>
 </div>
 <!-- File Button --> 
 <div class="form-group">
-<div style="color:red" >You should consider when upload image , because you can not fix it</div>
+
   <label class="col-md-4 control-label" for="filebutton">auxiliary_images 3</label>
   <div class="col-md-4">
+    <div style="color:red"  >*You should consider when upload image , because you can not fix it</div>
     <input id="filebutton4"  onchange="onChange(this.value)"  name="img4" class="input-file" onchange="onChange(this.value)"  type="file" required>
   </div>
 </div>

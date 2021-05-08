@@ -50,9 +50,12 @@ public class CartItemDAOImpl extends GenericDAO<CartItem> implements CartItemDAO
 	@Override
 	public int update(CartItem t) {
 		session.beginTransaction();
+		session.clear();
 		session.merge(t);
+		session.flush();
 
 		session.getTransaction().commit();
+
 
 		return 1;
 	}

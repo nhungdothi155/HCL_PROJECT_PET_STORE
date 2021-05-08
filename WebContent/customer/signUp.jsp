@@ -11,48 +11,39 @@
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#">
+      <form action="<%=request.getContextPath()%>/isSign" method="post">
         <div class="user-details">
           <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
+            <span class="details">FirstName</span>
+            <input type="text" name="firstname" placeholder="Enter your first name" required>
+          </div>
+           <div class="input-box">
+            <span class="details">LastName</span>
+            <input type="text" name="lastname" placeholder="Enter your last name" required>
+          </div>
+           <div class="input-box">
+            <span class="details">Date of Birth</span>
+            <input type="date" name="dob" placeholder="Enter your date of birth" required>
+          </div>
+       
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" name="phoneNumber" placeholder="Enter your phone number" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required>
+            <input type="text" name="username" placeholder="Enter your username" required>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" required>
+            <input type="text" name="password" placeholder="Enter your password" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" required>
+            <input type="password" name="password" placeholder="Confirm your password" required>
           </div>
         </div>
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <input type="radio" name="gender" id="dot-3">
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-        </div>
+        
         <div class="button">
           <input type="submit" value="Register">
         </div>

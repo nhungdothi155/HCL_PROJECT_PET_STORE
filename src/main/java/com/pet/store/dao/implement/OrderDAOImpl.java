@@ -54,7 +54,7 @@ public class OrderDAOImpl extends GenericDAO<Order> implements OrderDAO {
 	@Override
 	public int update(Order t) {
 		session.beginTransaction();
-		session.merge(t);
+		session.update(t);
 		session.getTransaction().commit();
 
 		return 1;

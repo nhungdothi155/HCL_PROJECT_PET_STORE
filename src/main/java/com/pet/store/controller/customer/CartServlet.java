@@ -41,57 +41,71 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// having customer id and product id to add to a cart
-		if(request.getSession().getAttribute("customerId")!=null) {
+		
+		if (request.getSession().getAttribute("customerId") != null) {
 			
 			long customerId = Long.parseLong(request.getSession().getAttribute("customerId").toString());
-			
-			int productId = Integer.parseInt(request.getParameter("id"));
-			System.out.println(customerId + " customer Id");
-			// add cart for a cusotmer if cart is not exits
-			customerService.addCartForCustomer((int) customerId);
-			// find cart by ccusotmer id
-			Cart cart = customerService.findCartByCustomerId(customerId);
-			// find product in of this customer in the cart item
-//			CartItem cartItem = cartItemService.getCartItemByProductId(productId);
-			CartItem cartItem = cart.getCartItems().stream().filter(c->c.getProduct().getProductId() ==productId).findFirst().orElse(null);
-		
-			//System.out.println(cartItem.getProduct().getMaterial() + "k");
-			
-			// if product exists , add 1 to the quanity of order_product
-			// else
-			// add the product into cart
-			List<CartItem> cartItems = new ArrayList<CartItem>();
-			System.out.println(productId + "productId");
-			if (cartItem != null) {
-				System.out.println(cartItem.getCartItemId()  + " cartItem"); 
-				cartItem.setQuantity(cartItem.getQuantity() + 1);
-				cartItemService.updateCartItem(cartItem);
-				Cart cartOfUser = customerService.findCartByCustomerId(customerId);
-				// find all the cartItem incluing products
-				cartItems = cartOfUser.getCartItems();
-		           System.out.println(cartItems.size() + "catsize");
 
+
+			if (request.getParameter("productId") != null ) {
+				
+				int productId = Integer.parseInt(request.getParameter("productId"));
+				int quantity = 1;
+				if(request.getParameter("quantity")!="") {
+						quantity = Integer.parseInt(request.getParameter("quantity"));
+				}
+				System.out.println(quantity + "quantity");
+
+				// add cart for a cusotmer if cart is not exits
+				customerService.addCartForCustomer((int) customerId);
+
+				// find cart by ccusotmer id
+				Cart cart = customerService.findCartByCustomerId(customerId);
+
+				// find product in of this customer in the cart item
+
+				CartItem cartItem = cart.getCartItems().stream().filter(c -> c.getProduct().getProductId() == productId)
+						.findFirst().orElse(null);
+
+				List<CartItem> cartItems = new ArrayList<CartItem>();
+
+				if (cartItem != null) {
+					System.out.print("yalay");
+
+					cartItem.setQuantity(cartItem.getQuantity() + quantity);
+					cartItemService.updateCartItem(cartItem);
+
+					System.out.println(cartItem.getQuantity());
+					Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+					// find all the cartItem incluing products
+					cartItems = cartOfUser.getCartItems();
+
+				} else {
+					customerService.addProductToCart(cart.getCartId(), productId, quantity);
+					Cart cartOfUser = customerService.findCartByCustomerId(customerId);
+					// find all the cartItem incluing products
+					cartItems = cartOfUser.getCartItems();
+
+				}
+				// find cart of by customer id agian
+				request.setAttribute("productId", productId);
+				request.setAttribute("cartItemLists", cartItems);
+
+				RequestDispatcher rq = request.getRequestDispatcher("customer/cart.jsp");
+				rq.forward(request, response);
 
 			} else {
-				customerService.addProductToCart( cart.getCartId(), productId, 2);
-				Cart cartOfUser = customerService.findCartByCustomerId(customerId);
-				// find all the cartItem incluing products
-				cartItems = cartOfUser.getCartItems();
-		         
-
+				Cart cart = customerService.findCartByCustomerId(customerId);
+				System.out.println(cart.getCustomer().getId());
+				List<CartItem> items = cart.getCartItems();
+				request.setAttribute("cartItemLists", items);
+				RequestDispatcher rq = request.getRequestDispatcher("customer/cart.jsp");
+				rq.forward(request, response);
 			}
-			// find cart of by customer id agian
-			
-			request.setAttribute("cartItemLists", cartItems);
-			
 
-			RequestDispatcher rq = request.getRequestDispatcher("carts.jsp");
-			rq.forward(request, response);
-		}
-		else {
+		} else {
 			response.sendRedirect(request.getServletContext().getContextPath() + "/login");
 		}
-		
 
 	}
 

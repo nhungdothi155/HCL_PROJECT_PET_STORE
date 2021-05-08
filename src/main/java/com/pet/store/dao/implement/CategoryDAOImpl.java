@@ -47,7 +47,7 @@ public class CategoryDAOImpl extends GenericDAO<Category> implements CategoryDAO
 	@Override
 	public int update(Category t) {
 
-		session.merge(t);
+		session.update(t);
 		session.getTransaction().commit();
 
 		return 1;

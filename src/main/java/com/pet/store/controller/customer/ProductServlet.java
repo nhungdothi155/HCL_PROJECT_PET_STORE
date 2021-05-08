@@ -40,11 +40,13 @@ public class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Product product = productService.getElementById(id);
-		request.setAttribute("category", product.getCategory().getCategoryName());
-		request.setAttribute("name", product.getProductName());
-		request.setAttribute("id", id);
+//		request.setAttribute("category", product.getCategory().getCategoryName());
+//		request.setAttribute("name", product.getProductName());
+//		request.setAttribute("id", id);
+		request.setAttribute("product", product);
+
 		
-		request.getRequestDispatcher("product.jsp").forward(request, response);
+		request.getRequestDispatcher("/customer/productDetails.jsp").forward(request, response);
 		
 	}
 
