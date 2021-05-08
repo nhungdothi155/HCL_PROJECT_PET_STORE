@@ -19,18 +19,21 @@
 <!-- Header -->
  <div class="flex-col medium-text-center">
 	  	<p class="woocommerce-result-count hide-for-medium">Show 25 products for each page</p>
-<form class="search" method="get">
-	<select name="orderby" class="orderby" aria-label="Đơn hàng của cửa hàng">
-					<option value="feature">featured</option>
-					<option value="lowest">HighestPriceToLow</option>
-					<option value="highest">LowestPriceToHigh</option>
-					<option value="newest">Newest</option>
-			</select>
-	<input type="hidden" name="paged" value="1">
-	<input type="hidden" name="s" value="meo"><input type="hidden" name="post_type" value="product">
-	</form>
+
 	  </div>
     <div class="products">
+    <form style="position:relative; top: 100px" class="search" method="get" >
+	<select class="selectpicker" name="orderby" class="orderby" aria-label="Đơn hàng của cửa hàng" onchange="this.form.submit()">
+					<option value="feature" >featured</option>
+					<option value="lowprice">LowestPriceToHigh</option>
+					<option value="highprice">HighestPriceToLow</option>
+					<option value="newest">Newest</option>
+			</select>
+			<input type="hidden" name="search" value="${search }">
+<!-- <input type="hidden" name="page" value="${page }">
+	
+	 <input type="hidden" name="post_type" value="product">-->
+	</form>
     <div class="flex" style="margin-top:100px; margin-left:110px;margin-right:100px" >
     <c:if test="${products!=null }">
     <c:forEach items ="${products }" var ="p" >
@@ -87,6 +90,12 @@
       
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
 <script>
 document.getElementById('search').value = '${param.foo}';
   var myIndex = 0;

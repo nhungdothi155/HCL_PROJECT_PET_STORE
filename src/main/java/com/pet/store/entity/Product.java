@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name="product")
 public class Product implements Serializable{
@@ -67,9 +70,13 @@ private Double age;
 @Enumerated(EnumType.STRING)
 @Column(name="product_state")
 private State productState;
-@Temporal(TemporalType.TIMESTAMP)
+@CreationTimestamp
 @Column(name="date_created")
 private Date dateCreated;
+//time modify
+@UpdateTimestamp
+@Column(name="date_modified")
+private Date dateModified;
 @OneToMany(mappedBy="product")
 private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 

@@ -44,7 +44,7 @@
 								alt="" width="80" height="70" 	></td>
 							<td><strong >$${c.product.price }</strong></td>
 							<td><input type="number" id="input" name="quantity" value="${c.quantity}" ></td>
-							<td><a href="#" class="text-dark"><i class="fa fa-trash"
+							<td><a href="<%=request.getContextPath() %>/cart/delete?cartItemId=${c.cartItemId}" class="text-dark"><i class="fa fa-trash"
 									style="color: black;"></i></a></td>
 
 						</tr>
@@ -53,7 +53,7 @@
 
 			</table>
 		
-			<button>Continue seeing product</button>
+			<a href="<%=request.getContextPath()%>/home"><button type="button">Continue seeing product</button></a>
 		</div>
 		<div class="split right">
 		
@@ -69,8 +69,8 @@
 						<strong id="total">Total</strong>
 					</c:if>
 				</div>
-				<button style="background-color: #27d9ab;">Procceed To
-					Checkout</button>
+				<a href="<%=request.getContextPath()%>/home"><button style="background-color: #27d9ab;">Procceed To
+					Checkout</button></a>
 			
 		</div>
 

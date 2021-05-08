@@ -2,19 +2,18 @@
  
       <div class="footer-left">
       
-      <h3>WebDev<span>Trick</span></h3>
+      <h3>Pet<span>Store</span></h3>
       
       <p class="footer-links">
       <a href="#">Home</a>
-      ·
+     
       <a href="#">Blog</a>
-      ·
-      <a href="#">Pricing</a>
-      ·
+         <a href="#">Pricing</a>
+      
       <a href="#">About</a>
-      ·
+   
       <a href="#">Faq</a>
-      ·
+
       <a href="#">Contact</a>
       </p>
       

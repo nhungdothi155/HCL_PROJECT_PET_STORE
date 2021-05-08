@@ -2,6 +2,7 @@ package com.pet.store.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name = "\"cart\"")
 public class Cart implements Serializable{
@@ -34,7 +38,13 @@ public class Cart implements Serializable{
 	@OneToMany(mappedBy="cart")
 	private List<CartItem> cartItems = new ArrayList<CartItem>();
 	
-	
+	@CreationTimestamp
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@UpdateTimestamp
+	@Column(name="date_modified")
+	private Date dateModified;
 	public Cart() {
 		super();
 	}

@@ -2,6 +2,7 @@ package com.pet.store.entity;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name="seller")
@@ -29,13 +33,13 @@ public class Seller implements Serializable {
 	@Column(name="password")
 	private String password;
 	//time create
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name="date_created")
-//	private Date dateCreated;
-//	//time modify
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name="date_modified")
-//	private Date dateModified;
+	@CreationTimestamp
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@UpdateTimestamp
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	
 	public Seller() {

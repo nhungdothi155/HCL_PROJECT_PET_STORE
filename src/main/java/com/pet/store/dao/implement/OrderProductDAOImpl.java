@@ -79,11 +79,19 @@ public class OrderProductDAOImpl extends GenericDAO<OrderProduct> implements Ord
 	@Override
 	public OrderProduct getElementByProductId(long productId) {
 		Query<OrderProduct> query = session.createQuery(
-				"SELECT o from OrderProduct o where o.Product.productId = : productId", OrderProduct.class);
+				"SELECT o from OrderProduct o where o.Product.productId = :productId", OrderProduct.class);
 		query.setParameter("productId", productId);
 		OrderProduct op = query.uniqueResult();
 		return op;
 
+	}
+	public List<OrderProduct> getOrderProductByCustomerId(long customerId) {
+		Query<OrderProduct> query = session.createQuery(
+				"SELECT o from OrderProduct o where o.order.customer.id = :customerId", OrderProduct.class);
+		query.setParameter("customerId", customerId);
+		List<OrderProduct> ops = query.getResultList();
+		return ops;
+		
 	}
 
 	

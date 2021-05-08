@@ -135,7 +135,7 @@
 
   </head>
   <body>
-		
+		<div class="wrapper d-flex align-items-stretch">
 			<jsp:include page="header.jsp"></jsp:include>
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
@@ -204,6 +204,7 @@
 				</div>
 			</div>        
 		</div>     
+	</div>
 	</div>
 <script>
 		$(document).ready(function(){

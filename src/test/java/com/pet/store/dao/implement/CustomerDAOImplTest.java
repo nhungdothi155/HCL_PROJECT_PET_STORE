@@ -58,8 +58,8 @@ class CustomerDAOImplTest {
 	@Test
 	void testInsertCustomer() {
 		System.out.println("test insert");
-		Date date = new Date();
-		Customer cus = new Customer("nhung","do",date,"hanoi","09345345","nhung","nhung");
+	
+		Customer cus = new Customer("nhung","do","r23423","hanoi","09345345","nhung","nhung");
 		int n = cusDAO.insert(cus);
 		Assertions.assertTrue(n>0);
 	}

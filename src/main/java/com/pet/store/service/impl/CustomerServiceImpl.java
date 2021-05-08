@@ -9,12 +9,14 @@ import com.pet.store.dao.implement.CustomerDAOImpl;
 import com.pet.store.dao.implement.OrderDAOImpl;
 import com.pet.store.dao.implement.OrderProductDAOImpl;
 import com.pet.store.dao.implement.ProductDAOImpl;
+import com.pet.store.dao.implement.SellerDAOImpl;
 import com.pet.store.entity.Cart;
 import com.pet.store.entity.CartItem;
 import com.pet.store.entity.Customer;
 import com.pet.store.entity.Order;
 import com.pet.store.entity.OrderProduct;
 import com.pet.store.entity.Product;
+import com.pet.store.entity.Seller;
 import com.pet.store.service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -24,6 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private CartItemDAOImpl cartItemDAO;
 	private OrderDAOImpl orderDAO;
 	private OrderProductDAOImpl orderProductDAO;
+	private SellerDAOImpl sellerDao;
 	public CustomerServiceImpl() {
 		cusDAO = new CustomerDAOImpl();
 		cartDAO = new CartDAOImpl();
@@ -31,6 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 		cartItemDAO = new CartItemDAOImpl();
 		orderDAO = new OrderDAOImpl();
 		orderProductDAO = new OrderProductDAOImpl();
+		sellerDao = new SellerDAOImpl();
 		
 	}
 	
@@ -94,7 +98,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer signIn(String username, String password) {
 		Customer cus = cusDAO.isLogin(username, password);
+		
 		return cus;
+	}
+
+	@Override
+	public Seller signInAdmin(String username, String password) {
+		Seller seller = sellerDao.isLogin(username, password);
+		return seller;
 	}
 
 	@Override

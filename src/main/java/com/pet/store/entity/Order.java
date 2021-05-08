@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name="\"order\"")
 public class Order implements Serializable {
@@ -64,11 +67,11 @@ public class Order implements Serializable {
 	@Column(name="note")
 	private String note;
 	//time create
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="date_created")
 	private Date dateCreated;
 	//time modify
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	@Column(name="date_modified")
 	private Date dateModified;
 	

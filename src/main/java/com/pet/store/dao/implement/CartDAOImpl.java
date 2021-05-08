@@ -2,6 +2,8 @@ package com.pet.store.dao.implement;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -10,8 +12,6 @@ import com.pet.store.DBConnection.HibernateUtil;
 import com.pet.store.dao.CartDAO;
 import com.pet.store.dao.GenericDAO;
 import com.pet.store.entity.Cart;
-import com.pet.store.entity.Category;
-import com.pet.store.entity.Customer;
 
 public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
 	private SessionFactory sessionFactory;
@@ -36,8 +36,10 @@ public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
 	@Override
 	public int insert(Cart t) {
 		if (t != null) {
-
+            session.beginTransaction();
+            session.clear();
 			session.save(t);
+			session.flush();
 			session.getTransaction().commit();
 
 			return 1;
@@ -75,11 +77,19 @@ public class CartDAOImpl extends GenericDAO<Cart> implements CartDAO {
         session.clear();
 		Query<Cart> query = session.createQuery("Select c from Cart c where c.customer.id= :customerId ", Cart.class);
 		query.setParameter("customerId", custId);
-		Cart cart = query.getSingleResult();
+		Cart cart = null;
+		try{
+			 cart = query.getSingleResult();
+		}
+			catch (NoResultException nre){
+			//Ignore this because as per your logic this is ok!
+			}
+		
 		if (cart != null) {
 			return cart;
 		}
 		return null;
-	}
+    }
+	
 
 }

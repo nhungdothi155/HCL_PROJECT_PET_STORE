@@ -2,7 +2,6 @@ package com.pet.store.controller.customer;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,15 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.pet.store.entity.CartItem;
 import com.pet.store.entity.Customer;
 import com.pet.store.entity.Order;
 import com.pet.store.service.impl.CartItemServiceImpl;
 import com.pet.store.service.impl.CustomerServiceImpl;
+import com.pet.store.service.impl.OrderProductServiceImpl;
 import com.pet.store.service.impl.OrderServiceImpl;
-import com.pet.store.service.impl.ProductServiceImpl;
 
 /**
  * Servlet implementation class Order
@@ -29,7 +27,7 @@ public class OrderServlet extends HttpServlet {
 	private CartItemServiceImpl cartItemService;
 	private CustomerServiceImpl customerService;
 	private OrderServiceImpl orderService;
-	private ProductServiceImpl productService;
+	private OrderProductServiceImpl opService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +37,7 @@ public class OrderServlet extends HttpServlet {
     	customerService = new CustomerServiceImpl();
 		orderService = new OrderServiceImpl();
 		cartItemService = new CartItemServiceImpl();
-		productService = new ProductServiceImpl();
+		opService = new OrderProductServiceImpl();
         // TODO Auto-generated constructor stub
     }
 
@@ -49,7 +47,7 @@ public class OrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getRequestURL().toString();
 		if(action.contains("/order/all")) {
-			
+			showAllOrders(request, response);
 		}
 		//redirect to order add form
 		else if(action.contains("/order/add")) {
@@ -73,6 +71,11 @@ public class OrderServlet extends HttpServlet {
 		String [] listQuantity = request.getParameterValues("quantity");
 		String[] listCartItem = request.getParameterValues("cartItem");
 		List<CartItem> list = new ArrayList<CartItem>();
+		if(listCartItem ==null) {
+			response.sendRedirect(request.getContextPath() + "/cart");
+			return;
+		}
+		else {
 	     for(int i = 0 ; i<listCartItem.length;i++) {
 	    	 
 	    		 CartItem cartItem= cartItemService.getCartItemById(Long.parseLong(listCartItem[i]));
@@ -89,6 +92,7 @@ public class OrderServlet extends HttpServlet {
 	    request.setAttribute("totalCost", totalCost);
 		System.out.println(list.size() + "size of all item in order");
 		request.getRequestDispatcher("/customer/checkout.jsp").forward(request, response);
+		}
 	}
 	public void insertOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("customerId")!=null) {
@@ -154,4 +158,11 @@ public class OrderServlet extends HttpServlet {
 				response.sendRedirect(request.getServletContext().getContextPath() + "/login");
 			}
 	}
+	  public void showAllOrders (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 long cusId =(Long) request.getSession().getAttribute("customerId");
+		  
+		  request.setAttribute("ops",opService.getOrderProductByCustomerId(cusId));
+		  request.getRequestDispatcher("/customer/orderList.jsp").forward(request, response);
+				  
+	  }
 	}

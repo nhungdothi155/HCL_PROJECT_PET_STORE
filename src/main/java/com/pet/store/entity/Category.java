@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name="category")
 public class Category implements Serializable{
@@ -32,11 +35,11 @@ public class Category implements Serializable{
 	// sub categories
 	@Column(name="sub_categories")
 	private String subCategories;
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="date_created")
 	private Date dateCreated;
 	//time modify
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	@Column(name="date_modified")
 	private Date dateModified;
 	

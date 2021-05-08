@@ -49,26 +49,6 @@ public class CustomerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//
-//		List<Product> products = new ArrayList<Product>();
-//		if (request.getParameter("search") != null && request.getParameter("orderby")==null) {
-//			String search = request.getParameter("search");
-//			request.setAttribute("search", search);
-//			products = productService.searchProductByNameOrType(search);
-//
-//		} 
-//		else if( request.getParameter("orderby")!=null && request.getParameter("search") != null) {
-//			String search = request.getParameter("search");
-//			String require = request.getParameter("orderby");
-//			request.setAttribute("search", search);
-//			products = productService.searchProductByRequire(search,require);
-//			+-+
-//		}
-//		else {
-//			products = productService.findAllProduct();
-//		}
-		// create new request
-//		request.setAttribute("products", products);
 
 		String actionR = request.getRequestURI().substring((request.getContextPath() + "/home").length());
 		String action = actionR;
@@ -114,18 +94,27 @@ public class CustomerServlet extends HttpServlet {
 		if (actionR.length() > 0) {
 			action = actionR.substring(1);
 		}
-		System.out.println(action);
-		// defautl pagenition
+	
 		int page = 1;
 		int recordsPerPage = 25;
 		// if pagnition !=null
-		if (request.getParameter("page") != null)
+		String require = "feature";
+		if (request.getParameter("orderby") != null) {
+		
+			require = request.getParameter("orderby").toLowerCase();
+		}
+		if (request.getParameter("page") != null || request.getParameter("page") == "") {
 			page = Integer.parseInt(request.getParameter("page"));
-		List<Product> products = productService.searchProductByNameOrType(action, page - 1, recordsPerPage);
+		}
+		System.out.println(action + require + "134" );
+		
+			
+		List<Product> products = productService.searchProductByNameOrType(action,require, page - 1, recordsPerPage);
 		List<Product> allProducts = productService.searchProductByNameOrType(action);
 		System.out.println(products.size());
 		int noOfPages = (int) Math.ceil(allProducts.size() * 1.0 / recordsPerPage);
 		// set value need for pagination
+		request.setAttribute("orderby", require);
 		request.setAttribute("category", action);
 		request.setAttribute("noOfPages", noOfPages);
 		request.setAttribute("currentPage", page);
@@ -133,33 +122,37 @@ public class CustomerServlet extends HttpServlet {
 		request.getRequestDispatcher("/customer/categoryPage.jsp").forward(request, response);
 	}
 
-	public void showListProductSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void showListProductSearch(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// set the variable
 		String search = request.getParameter("search").toLowerCase();
 		String require = "feature";
-		if(request.getParameter("orderby")!=null) {
+		if (request.getParameter("orderby") != null) {
+			System.out.println(require);
 			require = request.getParameter("orderby").toLowerCase();
 		}
-		
-		// defautl pagenition 
-		    int page = 1;
-	        int recordsPerPage = 25;
-	        // if pagnition !=null
-	        if(request.getParameter("page") != null)
-	        page = Integer.parseInt(request.getParameter("page"));
-	        // find all the product
-	        List<Product> products = productService.searchProductByRequire(search, require, page-1, recordsPerPage);
-	        List<Product> allProducts = productService.searchProductByRequire(search, require);
-             
-             System.out.println(allProducts.size());
-	        int noOfPages = (int) Math.ceil(allProducts.size()* 1.0 / recordsPerPage) ;
-	        // set value need for pagination
 
-	        request.setAttribute("search", search);
-	        request.setAttribute("orderby", require);
-	        request.setAttribute("noOfPages", noOfPages);
-	        request.setAttribute("currentPage", page);
-	        request.setAttribute("products", products);
+		// defautl pagenition
+		int page = 1;
+		int recordsPerPage = 25;
+		// if pagnition !=null
+		if (request.getParameter("page") != null || request.getParameter("page") == "") {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		// find all the product
+		List<Product> products = productService.searchProductByRequire(search, require, page - 1, recordsPerPage);
+		System.out.println(products.size() + "productsize");
+		List<Product> allProducts = productService.searchProductByRequire(search, require);
+
+		System.out.println(allProducts.size());
+		int noOfPages = (int) Math.ceil(allProducts.size() * 1.0 / recordsPerPage);
+		// set value need for pagination
+
+		request.setAttribute("search", search);
+		request.setAttribute("orderby", require);
+		request.setAttribute("noOfPages", noOfPages);
+		request.setAttribute("currentPage", page);
+		request.setAttribute("products", products);
 		request.getRequestDispatcher("/customer/searchPage.jsp").forward(request, response);
 	}
 

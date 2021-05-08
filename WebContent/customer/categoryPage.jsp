@@ -20,14 +20,14 @@
  <div class="flex-col medium-text-center">
 	  	<p class="woocommerce-result-count hide-for-medium">Show 25 products for each page</p>
 <form class="search" method="get">
-	<select name="orderby" class="orderby" aria-label="Đơn hàng của cửa hàng">
-					<option value="popularity">featured</option>
-					<option value="rating">HighestPriceToLow</option>
-					<option value="date">LowestPriceToHigh</option>
-					<option value="price">Newest</option>
+	<select  name="orderby" class="orderby" aria-label="Đơn hàng của cửa hàng" onchange="this.form.submit()">
+					<option value="feature" >featured</option>
+					<option value="lowprice">LowestPriceToHigh</option>
+					<option value="highprice">HighestPriceToLow</option>
+					<option value="newest">Newest</option>
 			</select>
-	<input type="hidden" name="paged" value="1">
-	<input type="hidden" name="s" value="meo"><input type="hidden" name="post_type" value="product">
+	
+	
 	</form>
 	  </div>
     <div class="products">
@@ -50,7 +50,7 @@
   
  <%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
-        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${currentPage - 1}&orderby=${orderby}">Previous</a></td>
     </c:if>
  
     <%--For displaying Page numbers. 
@@ -63,7 +63,7 @@
                         <td>${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${i}">${i}</a></td>
+                        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${i}&orderby=${orderby}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -72,7 +72,7 @@
      
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${currentPage + 1}">Next</a></td>
+        <td><a href="<%=request.getContextPath() %>/home/${category}?page=${currentPage + 1}&orderby=${orderby}">Next</a></td>
     </c:if>
  
   

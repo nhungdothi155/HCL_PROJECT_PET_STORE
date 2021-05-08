@@ -15,7 +15,7 @@ List<Category> cats = c.getAllCategories();
 request.setAttribute("cats1", cats.stream().filter(k -> k.getCategoryName().equals("PETS")).collect(Collectors.toList()));
 request.setAttribute("cats2", cats.stream().filter(k -> k.getCategoryName().equals("ACCESSORIES")).collect(Collectors.toList()));
 
-String search= request.getParameter("search");
+String searchValue= request.getParameter("search");
 
 %>
 
@@ -25,7 +25,7 @@ String search= request.getParameter("search");
       
       <div class="search-container">
           <form action="<%=request.getContextPath() %>/home" method=get>
-            <input id="search" type="text" placeholder="" name="search" <c:if test="${search!=null } ">value="${search }"</c:if>>
+            <input id="search" type="text" placeholder="" name="search" value="${search }">
            <button style="background-image: url(<%=request.getServletContext().getContextPath() %>/customer/images/searchIcon.jpg); background-size: cover;"></button>
           </form>
         </div>
@@ -33,7 +33,7 @@ String search= request.getParameter("search");
         <div class="phone" ><i class="fa fa-phone" style="font-size:18px"></i>0972751283</div>
        
         <div class="love">
-          <button class="btn" style="border: none; background-color: white;"><i class="fa fa-heart"  style="font-size: 20px;"></i></button>
+         <a href="<%=request.getContextPath() %>/order/all"><button class="btn" style="border: none; background-color: white;"><i class='fas fa-cart-arrow-down' style='font-size:20px'>&#xf07a;</i></button></a> 
         </div>
 
         <div class="cart">

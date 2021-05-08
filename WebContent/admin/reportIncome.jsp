@@ -14,12 +14,13 @@
   </head>
   <body>
   <% double[] months = (double[]) request.getAttribute("months"); %>
-		
+		<div class="wrapper d-flex align-items-stretch">
 		<jsp:include page="header.jsp"></jsp:include>
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+		</div>
 		</div>
 		
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

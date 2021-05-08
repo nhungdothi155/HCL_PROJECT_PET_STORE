@@ -15,49 +15,42 @@
 		<link rel="stylesheet" href="<%=request.getServletContext().getContextPath() %>/admin/css/style.css">
   </head>
   <body>
-  <% Map<Integer, String> ops = (Map<Integer, String>) request.getAttribute("orderProducts");
-   Object[] l = ops.values().toArray();
-   Object[] y = ops.keySet().toArray();
+  <% String dataPoints = (String) request.getAttribute("dataPoints");
   %>
-		
+		<div class="wrapper d-flex align-items-stretch">
 			<jsp:include page="header.jsp"></jsp:include>
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 		</div>
+		</div>
 		
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
-window.onload = function () {
 
+window.onload = function () {
+	<% if(dataPoints != null) { %>
 var options = {
-	animationEnabled: true,
+		animationEnabled: true,
+		exportEnabled: true,
 	title: {
-		text: "GDP Growth Rate - 2016"
-	},
-	axisY: {
-		title: "Growth Rate (in %)",
-		suffix: "%"
+		text: "Selling Product- 2021"
 	},
 	axisX: {
-		title: "Countries"
+		title: "Products In the Pet Store"
 	},
 	data: [{
-		type: "column",
-		yValueFormatString: "#,##0.0#"%"",
-		dataPoints: [
-			<c:forEach items="${l}" var="l" varStatus="status">
-			
-			{ label:"${l}", y:${y[status.index]}}
-			</c:forEach>
-
-			
-			
-		]
-	}]
+		type: "column", //change type to bar, line, area, pie, etc
+		dataPoints: <%out.print(dataPoints);%>
+	}],
+	scales: {
+	      y: {
+	        beginAtZero: true
+	      }
+	    }
 };
 $("#chartContainer").CanvasJSChart(options);
-
+<% } %> 
 }
 </script>
     <script src="<%=request.getServletContext().getContextPath() %>/admin/js/jquery.min.js"></script>

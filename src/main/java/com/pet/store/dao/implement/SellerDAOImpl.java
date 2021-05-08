@@ -24,7 +24,7 @@ public class SellerDAOImpl extends GenericDAO<Seller> implements SellerDAO {
 	}
 
 	@Override
-	public boolean isLogin(String username, String password) {
+	public Seller isLogin(String username, String password) {
 
 		Query<Seller> query = session.createQuery(
 				"Select s from Seller s where s.username= :username and s.password= :password", Seller.class);
@@ -33,13 +33,13 @@ public class SellerDAOImpl extends GenericDAO<Seller> implements SellerDAO {
 
 		Seller seller = query.uniqueResult();
 
-		if (seller == null) {
+		if (seller != null) {
 
-			return false;
+			return seller;
 
 		} else {
 
-			return true;
+			return null;
 		}
 
 	}

@@ -6,5 +6,6 @@ import com.pet.store.entity.OrderProduct;
 
 public interface OrderProductService {
 	public List<OrderProduct> getAllOrderProduct();
+	public List<OrderProduct> getOrderProductByCustomerId(long id);
 
 }

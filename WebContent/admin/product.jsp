@@ -136,7 +136,7 @@
 
   </head>
   <body>
-		
+		<div class="wrapper d-flex align-items-stretch">
 			<jsp:include page="header.jsp"></jsp:include>
 
         <!-- Page Content  -->
@@ -254,6 +254,7 @@
 				</div>
 			</div>        
 		</div>     
+	</div>
 	</div>
 <script>
 function myFunction(){ confirm("Do you want to delete");}

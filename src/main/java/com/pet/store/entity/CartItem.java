@@ -1,6 +1,7 @@
 package com.pet.store.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name="cart_item")
 public class CartItem implements Serializable{
@@ -31,6 +35,14 @@ public class CartItem implements Serializable{
 	
 	@Column(name="quantity")
 	private int quantity;
+	
+	@CreationTimestamp
+	@Column(name="date_created")
+	private Date dateCreated;
+	//time modify
+	@UpdateTimestamp
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	
 	public CartItem() {

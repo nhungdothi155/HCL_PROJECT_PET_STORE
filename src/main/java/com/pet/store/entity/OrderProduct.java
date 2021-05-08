@@ -12,6 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 @Table(name = "order_product")
 public class OrderProduct implements Serializable {
@@ -35,12 +38,12 @@ public class OrderProduct implements Serializable {
 	@Column(name = "order_product_number")
 	private int orderProductNumber;
 	// time create
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_created")
+	@CreationTimestamp
+	@Column(name="date_created")
 	private Date dateCreated;
-	// time modify
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_modified")
+	//time modify
+	@UpdateTimestamp
+	@Column(name="date_modified")
 	private Date dateModified;
 
 	public OrderProduct(long orderProductId, Product product, Order order, int orderProductNumber) {

@@ -32,9 +32,9 @@ public class ProductServiceImpl implements ProductService  {
 	}
 
 	@Override
-	public List<Product> searchProductByNameOrType(String search, int offset, int limit) {
+	public List<Product> searchProductByNameOrType(String search,String require, int offset, int limit) {
 		// TODO Auto-generated method stub
-		return productDAO.searchProductByWords(search,offset, limit);
+		return productDAO.searchProductByWords(search,require,offset, limit);
 	}
 	@Override
 	public List<Product> searchProductByNameOrType(String search, int limit) {

@@ -22,4 +22,10 @@ public class OrderProductServiceImpl implements OrderProductService {
 		
 	}
 
+	@Override
+	public List<OrderProduct> getOrderProductByCustomerId(long id) {
+		// TODO Auto-generated method stub
+		return opDAO.getOrderProductByCustomerId(id);
+	}
+
 }

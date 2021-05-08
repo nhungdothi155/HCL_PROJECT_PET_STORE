@@ -12,8 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name="customer")
 public class Customer implements Serializable{
@@ -33,9 +34,8 @@ public class Customer implements Serializable{
 	@Column(name="lastname")
 	private String lastname;
 	//dob
-	@Temporal(TemporalType.DATE)
 	@Column(name="dob")
-	private Date dob;
+	private String dob;
 	//address
 	@Column(name="address")
 	private String address;
@@ -48,11 +48,11 @@ public class Customer implements Serializable{
 	//password
 	@Column(name="password")
 	private String password;
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="date_created")
 	private Date dateCreated;
 	//time modify
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	@Column(name="date_modified")
 	private Date dateModified;
 	
@@ -62,7 +62,7 @@ public class Customer implements Serializable{
 	@OneToMany(mappedBy="customer")
 	private List<Order> orders = new ArrayList<Order>();
 	
-	public Customer( String firstname, String lastname, Date dob, String address, String phone, String username,
+	public Customer( String firstname, String lastname, String dob, String address, String phone, String username,
 			String password) {
 		super();
 		
@@ -121,10 +121,10 @@ public class Customer implements Serializable{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getAddress() {
