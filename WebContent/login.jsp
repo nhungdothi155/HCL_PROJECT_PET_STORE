@@ -267,13 +267,62 @@ input[type=text]:placeholder {
 #icon {
   width:60%;
 }
+.loginFacebook .loginGoogle{
+  position: relative;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px 0 30px 0;
+  width: 100px;
+} 
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+.btn:hover {
+  opacity: 1;
+}
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
 
 </style>
 </head>
 <body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1096162590873585',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v10.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown">
@@ -296,6 +345,17 @@ input[type=text]:placeholder {
     <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div>
+    
+    <div id='loginFacebook'>
+	  <a class="fb btn" href="https://www.facebook.com/dialog/oauth?client_id=1096162590873585&redirect_uri=https://localhost:8085/LoginApp/login-facebook">
+	    <i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
+	</div>
+	
+<!-- 	<div id='loginGoogle'>
+	  <a href="#" class="google btn">
+	  	<i class="fa fa-google fa-fw"></i> Login with Google
+	  </a>
+	</div> -->
 
   </div>
 </div>
