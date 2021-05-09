@@ -49,6 +49,7 @@ public class CustomerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+ 
 
 		String actionR = request.getRequestURI().substring((request.getContextPath() + "/home").length());
 		String action = actionR;

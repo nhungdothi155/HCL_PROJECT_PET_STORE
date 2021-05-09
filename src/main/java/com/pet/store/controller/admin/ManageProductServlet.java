@@ -264,7 +264,9 @@ public class ManageProductServlet extends HttpServlet {
 						break;
 					} else {
 						Path path = Paths.get(filename);
-						String storePath = "C:\\Users\\MyPC\\eclipse-workspace\\JAVA_PROJECT\\HCL_PROJECT_PET_STORE\\WebContent\\uploads";
+						
+						
+						String storePath = System.getProperty("user.dir") + "HCL_PROJECT_PET_STORE\\WebContent\\uploads";
 						File uploadFile = new File(storePath + "/" + path.getFileName());
 						File newFile = createFileWithCurDate(uploadFile);
 						item.write(newFile);
