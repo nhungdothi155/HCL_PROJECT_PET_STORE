@@ -150,14 +150,14 @@ img{
     background: #256eff;
 }
 .purchase-info .btn:last-of-type{
-    background: #F37521;
+    background: #ffb300;
 }
 .purchase-info .btn:hover{
     opacity: 0.9;
 }
 
 .social-links i{
-    color: #F37521;
+    color: #ffb300;
 }
 .social-links p{
     font-weight: 500;

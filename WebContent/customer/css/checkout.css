@@ -88,7 +88,7 @@
 }
 .order tr>td:nth-child(2){
   text-align: right;
-  color: #52ad9c;
+  color: #ffb300;
 }
 .order td{
   border-bottom: 1px solid #dadada;
@@ -111,12 +111,12 @@
   padding: 10px;
   border: none;
   border-radius: 30px;
-  background: #52ad9c;
+  background: #ffb300;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
 }
 .order button:hover{
   cursor: pointer;
-  background: #428a7d;
+  background: #ffb300;
 }

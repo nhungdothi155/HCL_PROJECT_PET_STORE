@@ -16,32 +16,32 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">FirstName</span>
-            <input type="text" name="firstname" placeholder="Enter your first name" required>
+            <input type="text" name="firstname" required>
           </div>
            <div class="input-box">
             <span class="details">LastName</span>
-            <input type="text" name="lastname" placeholder="Enter your last name" required>
+            <input type="text" name="lastname" required>
           </div>
            <div class="input-box">
             <span class="details">Date of Birth</span>
-            <input type="date" name="dob" placeholder="Enter your date of birth" required>
+            <input type="date" name="dob" required>
           </div>
        
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="phoneNumber" placeholder="Enter your phone number" required>
+            <input type="text" name="phoneNumber" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" name="username" placeholder="Enter your username" required>
+            <input type="text" name="username" required>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" name="password" placeholder="Enter your password" required>
+            <input type="text" name="password" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="password" name="password" placeholder="Confirm your password" required>
+            <input type="password" name="password" required>
           </div>
         </div>
         
