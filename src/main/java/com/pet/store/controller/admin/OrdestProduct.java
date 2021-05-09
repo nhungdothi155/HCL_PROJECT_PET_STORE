@@ -48,25 +48,27 @@ public class OrdestProduct extends HttpServlet {
 			throws ServletException, IOException {
 		
 		List<Product> products = productService.findAllProduct();
-		List<OrderProduct> ops = orderService.getAllOrderProduct();
-		Map<Object,Object> orderProducts = new TreeMap< Object,Object>(Collections.reverseOrder());
+	
+		Map<Object,Object> map = null;
 		List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
-		int num = 0;
+		Gson gsonObj = new Gson();
+
+		String dataPoints = "";
+		
 	for(int i=0 ;i<products.size();i++) {
 		String name  = products.get(i).getProductName();
-		 num = products.get(i).getOrderProducts().stream().mapToInt(ob->ob.getOrderProductNumber() ).reduce(0, (a,b)->a + b);
-		System.out.println(num);
-		orderProducts.put("label", name);
-		orderProducts.put("y", num);
-		list.add(orderProducts);
+		System.out.println(name);
+		 int num = products.get(i).getOrderProducts().stream().mapToInt(ob->ob.getOrderProductNumber() ).reduce(0, (a,b)->a + b);
+			map = new TreeMap<Object,Object>(Collections.reverseOrder()); 
+			map.put("label", name); map.put("y",num); 
+			list.add(map);
+			dataPoints = gsonObj.toJson(list);
+			
 	
 	}
 	
-	System.out.println(orderProducts.size());
 	
-	Gson gsonObj = new Gson();
-
-	String dataPoints = gsonObj.toJson(list);
+	
 	
 	 
 		

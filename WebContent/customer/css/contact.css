@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,300;1,400;1,500&display=swap');
 
-.footer {
+.contact-admin  {
 	width: 100%;
 	height: auto;
 	padding: 40px 0;
 	background: white;
 }
-.footer-inner {
+.contact-admin .footer-inner {
 	width: 100%;
 	height: auto;
 	background: #fff;
 	padding: 24px;
 }
-.map iframe {
+ .contact-admin .map iframe {
 	width: 100%;
 	height: 340px;
 	border: none;
 }
-.contact-text {
+.contact-admin .contact-text {
 	width: 100%;
 	height: auto;
 }
-.contact-text h1 {
+.contact-admin .contact-text h1 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 36px;
 	font-weight: 600;
@@ -29,7 +29,7 @@
 	margin: 0px;
 	padding-bottom: 20px;
 }
-.contact-text h2 {
+.contact-admin .contact-text h2 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	font-weight: 500;
@@ -37,10 +37,10 @@
 	margin: 0px;
 	padding-top: 25px;
 }
-.contact-text h2 i {
+.contact-admin .contact-text h2 i {
 	color: #F37521;
 }
-.contact-text p {
+.contact-admin .contact-text p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	color: #000;
@@ -49,17 +49,17 @@
 	padding-left: 24px;
 	font-weight: 100;
 }
-.footer-mein {
+.contact-admin .footer-mein {
 	width: 100%;
 	height: auto;
 	background: #F37521;
 	padding: 30px 0;
 }
-.footer-soical {
+.contact-admin .footer-soical {
 	width: 100%;
 	height: auto;
 }
-.footer-soical h3 {
+.contact-admin .footer-soical h3 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 36px;
 	font-weight: 500;
@@ -67,58 +67,58 @@
 	margin: 0px;
 	text-align: left;
 }
-.footer-soical h3 span {
+.contact-admin .footer-soical h3 span {
 	font-size: 14px;
 	font-weight: 200;
 }
-.social-innar {
+.contact-admin .social-innar {
 	width: 100%;
 	height: auto;
 	margin: auto;
 	margin-top: 20px;
 }
-.social-innar ul {
+.contact-admin .social-innar ul {
 	margin: 0px;
 	padding: 0px;
 }
-.social-innar ul li {
+.contact-admin .social-innar ul li {
 	float: left;
 	margin: auto;
 	list-style: none;
 }
-.social-innar ul li a {
+.contact-admin .social-innar ul li a {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	color: #fff;
 	padding: 13px 20px;
 	background: #000;
 }
-.form {
+.contact-admin .form {
 	width: 100%;
 	height: auto;
 	margin: auto;
 }
-.form-style1 {
+.contact-admin .form-style1 {
 	width: 300px;
 	height: 44px;
 	padding-left: 10px;
 	border: 1px solid;
 	margin-top: -7px;
 }
-.form-submit1 {
+.contact-admin .form-submit1 {
 	width: 51px;
 	height: 43px;
 	background: url(../images/submit.jpg);
 	border: none;
 	margin-top: -7px;
 }
-.footer-bottom {
+.contact-admin .footer-bottom {
 	width: 100%;
 	height: auto;
 	margin: auto;
 	background: #272727;
 }
-.footer-bottom p {
+.contact-admin .footer-bottom p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	color: #fff;
@@ -127,63 +127,63 @@
 	padding: 8.5px 0;
 	text-decoration: none;
 }
-.footer-bottom p span {
+.contact-admin .footer-bottom p span {
 	font-size: 14px;
 }
-.footer-bottom p a {
+.contact-admin .footer-bottom p a {
 	color: #fff;
 	text-decoration: none;
 }
  @media only screen and (min-width:360px) and (max-width:479px) {
-.map iframe {
+.contact-admin .map iframe {
 	height: 150px;
 }
-.contact-text {
+.contact-admin .contact-text {
 	padding: 15px;
 }
-.contact-text h1 {
+.contact-admin .contact-text h1 {
 	font-size: 24px;
 	padding-bottom: 10px;
 }
-.contact-text h2 {
+.contact-admin .contact-text h2 {
 	font-size: 18px;
 	padding-top: 10px;
 }
-.contact-text p {
+.contact-admin .contact-text p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 }
-.footer-soical h3 {
+.contact-admin .footer-soical h3 {
 	font-size: 18px;
 }
-.footer-soical h3 span {
+.contact-admin .footer-soical h3 span {
 	font-size: 12px;
 }
-.social-innar {
+.contact-admin .social-innar {
 	text-align: center;
 }
-.social-innar ul li {
+.contact-admin .social-innar ul li {
 	float: none;
 	display: inline-block;
 }
-.social-innar ul li a {
+.contact-admin .social-innar ul li a {
 	font-size: 10px;
 	padding: 5px 10px;
 }
-.form-style1 {
+.contact-admin .form-style1 {
 	width: 260px;
 	padding-left: 10px;
 	margin-top: 0px;
 	font-size: 12px;
 }
-.footer-bottom {
+.contact-admin.footer-bottom {
 	height: 60px;
 }
-.footer-bottom p {
+.contact-admin .footer-bottom p {
 	font-size: 12px;
 	text-align: center;
 }
-.pull-right {
+.contact-admin .pull-right {
 	float: none;
 }
 }

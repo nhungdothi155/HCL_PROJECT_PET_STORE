@@ -31,7 +31,7 @@ window.onload = function () {
 var options = {
 	animationEnabled: true,  
 	title:{
-		text: "Yearly Order - 2021"
+		text: "Monthly Order - 2021"
 	},
 	axisX: {
 		valueFormatString: "MMM"

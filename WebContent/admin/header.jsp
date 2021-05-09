@@ -47,6 +47,9 @@
 			  <li>
 				<a href="<%=request.getContextPath() %>/admin/customer">Customers</a>
 				</li>
+				 <li>
+				<a href="<%=request.getContextPath() %>/admin/logout">LogOut</a>
+				</li>
 	        </ul>
 
 	      </div>

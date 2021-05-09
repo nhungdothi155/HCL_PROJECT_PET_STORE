@@ -23,7 +23,7 @@ public class HibernateUtil {
 	        	System.setProperty("org.apache.commons.logging.Log",
 	        	"org.apache.commons.logging.impl.NoOpLog");
 	            Configuration cfg = new Configuration();
-	            cfg.configure("com/pet/store/DBConnection/hibernate_mysql.cfg.xml");
+	            cfg.configure("com/pet/store/DBConnection/hibernate_heruko.cfg.xml");
                 cfg.addAnnotatedClass(Pet.class)
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Seller.class)

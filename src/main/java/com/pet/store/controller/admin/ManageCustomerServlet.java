@@ -16,7 +16,7 @@ import com.pet.store.service.impl.CustomerServiceImpl;
 /**
  * Servlet implementation class HomePageAdminServlet
  */
-@WebServlet("/admin/customer")
+@WebServlet(urlPatterns = {"/admin/customer","/admin/logout"})
 public class ManageCustomerServlet extends HttpServlet {
 	private CustomerService cusService;
 	private static final long serialVersionUID = 1L;
@@ -34,9 +34,16 @@ public class ManageCustomerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Customer> customers = cusService.getAllCustomers();
-		request.setAttribute("customers", customers);
-		request.getRequestDispatcher("/admin/customer.jsp").forward(request, response);
+		String action = request.getRequestURL().toString();
+		if(action.contains("/admin/customer")) {
+			List<Customer> customers = cusService.getAllCustomers();
+			request.setAttribute("customers", customers);
+			request.getRequestDispatcher("/admin/customer.jsp").forward(request, response);
+		}
+		else if(action.contains("/admin/logout")) {
+			request.getSession().removeAttribute("adminId");
+			response.sendRedirect(request.getContextPath() + "/home");
+		}
 	}
 
 	/**

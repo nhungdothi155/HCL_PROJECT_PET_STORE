@@ -159,10 +159,15 @@ public class OrderServlet extends HttpServlet {
 			}
 	}
 	  public void showAllOrders (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 long cusId =(Long) request.getSession().getAttribute("customerId");
-		  
-		  request.setAttribute("ops",opService.getOrderProductByCustomerId(cusId));
-		  request.getRequestDispatcher("/customer/orderList.jsp").forward(request, response);
+		  if(request.getSession().getAttribute("customerId")!=null) {
+				 long cusId =(Long) request.getSession().getAttribute("customerId");
+				  request.setAttribute("ops",opService.getOrderProductByCustomerId(cusId));
+				  request.getRequestDispatcher("/customer/orderList.jsp").forward(request, response);
+		  }
+		  else {
+			  response.sendRedirect(request.getContextPath() + "/login");
+		  }
+	
 				  
 	  }
 	}

@@ -144,7 +144,7 @@
 				<div class="table-wrapper">
 					<div class="table-title">
 						<div class="row">
-							<div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+							<div class="col-sm-8"><h2>Order <b>Details</b></h2></div>
 							<div class="col-sm-4">
 								<div class="search-box">
 									<i class="material-icons">&#xE8B6;</i>
@@ -164,8 +164,7 @@
 								<th>Customer Phone<i class="fa fa-sort"></i></th>
 								<th>Customer Email</th>
 								<th>Customer zip code</th>
-								<th>Customer Note</th>
-								<th>Actions</th>
+								
 							</tr>
 						</thead>
 						<tbody id="myTable">
@@ -179,12 +178,8 @@
 								<td>${order.customerPhone }</td>
 								<td>${order.customerEmail }</td>
 								<td>${order.zipCode }</td>
-								<td>${order.note }</td>
-								<td>
-									<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-									<a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-									<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-								</td>
+								
+								
 								</c:forEach>
 							</tr>      
 						</tbody>
