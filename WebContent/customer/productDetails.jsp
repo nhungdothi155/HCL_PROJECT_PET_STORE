@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page errorPage="error.jsp" %>  
 <!DOCTYPE html>
 <html>
 <head>

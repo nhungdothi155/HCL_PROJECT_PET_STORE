@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page errorPage="error.jsp" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,10 @@
  <!-- Header -->
  <jsp:include page="header.jsp"></jsp:include>
 <!-- Header -->
- <div class="flex-col medium-text-center">
-	  	<p class="woocommerce-result-count hide-for-medium">Show 25 products for each page</p>
-<form class="search" method="get">
-	<select  name="orderby" class="orderby" aria-label="Đơn hàng của cửa hàng" onchange="this.form.submit()">
+ <div class="flex-col medium-text-center"  style=" margin-top:100px" >
+	
+<form class="search" method="get"  style="position:static; margin-left:110px; top:400px" >
+	<select  name="orderby" class="orderby" style="font-weight:700;padding-left:5px; width:200px; height:30px" aria-label="Đơn hàng của cửa hàng" onchange="this.form.submit()">
 					<option value="feature" >featured</option>
 					<option value="lowprice">LowestPriceToHigh</option>
 					<option value="highprice">HighestPriceToLow</option>
@@ -31,7 +32,7 @@
 	</form>
 	  </div>
     <div class="products">
-    <div class="flex" style="margin-top:100px; margin-left:110px;margin-right:100px" >
+    <div class="flex" style=" margin-left:110px;margin-right:100px; margin-bottom:50px;"  >
     <c:if test="${products!=null }">
     <c:forEach items ="${products }" var ="p" >
       <div >
@@ -55,12 +56,12 @@
  
     <%--For displaying Page numbers. 
     The when condition does not display a link for the current page--%>
-    <table border="1" cellpadding="5" cellspacing="5">
+    <table style="display:flex; justify-content:center;border-collapse: collapse;">
         <tr>
             <c:forEach begin="1" end="${noOfPages}" var="i">
                 <c:choose>
                     <c:when test="${currentPage eq i}">
-                        <td>${i}</td>
+                        <td style="background-color:#ccc; padding:3px;border:0.5px solid black;" >${i}</td>
                     </c:when>
                     <c:otherwise>
                         <td><a href="<%=request.getContextPath() %>/home/${category}?page=${i}&orderby=${orderby}">${i}</a></td>

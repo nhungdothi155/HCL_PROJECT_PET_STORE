@@ -132,8 +132,10 @@ public class CartServlet extends HttpServlet {
 				if(cart==null) {
 					customerService.addCartForCustomer((int) customerId);
 				}
+				else {
 				List<CartItem> items = cart.getCartItems();
 				request.setAttribute("cartItemLists", items);
+				}
 				
 			}
 			RequestDispatcher rq = request.getRequestDispatcher("customer/cart.jsp");

@@ -7,6 +7,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page errorPage="error.jsp" %>  
 <%
 CategoryService c = new CategoryServiceImpl();
 
@@ -32,8 +33,8 @@ String searchValue= request.getParameter("search");
 
         <div class="phone" ><i class="fa fa-phone" style="font-size:18px"></i>0972751283</div>
        
-        <div class="love">
-         <a href="<%=request.getContextPath() %>/order/all"><button class="btn" style="border: none; background-color: white;"><i class='fas fa-cart-arrow-down' style='font-size:20px'>&#xf07a;</i></button></a> 
+        <div class="cart">
+          <a href="<%=request.getContextPath() %>/order/all"><button class="btn" style="border: none;outline:none;background-color: white;"><i class="fa" style="font-size:24px; color: #7d7d7d;">&#xf07a;</i></button></a>
         </div>
 
         <div class="cart">
@@ -74,10 +75,7 @@ String searchValue= request.getParameter("search");
         </c:forEach>
         </ul>
       </li>
-      <li><a href="#">NEWS</a></li>
-      <li><a href="#">Contact</a>
-       
-      </li>
+      <li><a href="<%=request.getServletContext().getContextPath()%>/home/news">NEWS</a></li>
       <li><a href="<%=request.getServletContext().getContextPath()%>/home/contact">Contact</a></li>
     </ul>
   </nav>

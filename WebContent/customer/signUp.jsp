@@ -1,3 +1,4 @@
+<%@ page errorPage="error.jsp" %>  
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
@@ -52,4 +53,6 @@
   </div>
 
 </body>
+<script>
+</script>
 </html>
